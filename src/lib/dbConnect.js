@@ -24,7 +24,6 @@ async function dbConnect() {
     if (!cached.promise) {
         const opts = {
             bufferCommands: false,
-            bufferMaxEntries: 0,
         };
 
         cached.promise = mongoose
