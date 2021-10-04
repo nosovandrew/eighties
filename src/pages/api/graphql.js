@@ -3,6 +3,7 @@ import { ApolloServer } from 'apollo-server-micro';
 import dbConnect from '@/lib/dbConnect';
 import { schema } from '@/apollo/schema';
 
+// connect to db
 dbConnect();
 
 const apolloServer = new ApolloServer({ schema });
@@ -10,6 +11,7 @@ const apolloServer = new ApolloServer({ schema });
 const startServer = apolloServer.start();
 
 export default async function handler(req, res) {
+    // headers for using Apollo GraphQL Dashboard
     res.setHeader('Access-Control-Allow-Credentials', 'true');
     res.setHeader(
         'Access-Control-Allow-Origin',
@@ -24,6 +26,7 @@ export default async function handler(req, res) {
         return false;
     }
 
+    // start server and connect dashboard
     await startServer;
     await apolloServer.createHandler({
         path: '/api/graphql',
