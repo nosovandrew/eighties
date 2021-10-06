@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { request, gql } from 'graphql-request';
+import Link from "next/link";
 
 export default function Shop({ products }) {
     // show `loader` if page isn't pre-rendered
@@ -10,8 +11,12 @@ export default function Shop({ products }) {
 
     return (
         <ul>
-            {products.map((product) => (
-                <li key={product._id}>{product.item}</li>
+            {products.map((_product) => (
+                <li key={_product._id}>
+                    <Link href="/products/[slug]" as={`/products/${_product.slug}`}>
+                        {_product.item}
+                    </Link>
+                </li>
             ))}
         </ul>
     );
@@ -29,10 +34,10 @@ export async function getStaticPaths() {
 
     const drops = data.drops; // get array of drops from response
     // make array of drop pages (page slugs)
-    const paths = drops.map((doc) => {
+    const paths = drops.map((_drop) => {
         return {
             params: {
-                slug: doc.toString(),
+                slug: _drop.toString(),
             },
         };
     });
@@ -58,6 +63,7 @@ export async function getStaticProps({ params }) {
                     base
                     currency
                 }
+                slug
             }
         }
     `;
