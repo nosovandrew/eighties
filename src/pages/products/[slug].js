@@ -14,9 +14,9 @@ export default function Product({ product }) {
             <br />
             <span>{product.price.base}</span>
             <br />
-            {product.features.map((doc) => (
-                <span key={product.features.indexOf(doc)}>
-                    {doc}
+            {product.features.map((_feature) => (
+                <span key={product.features.indexOf(_feature)}>
+                    {_feature}
                     <br />
                 </span>
             ))}
@@ -40,9 +40,9 @@ export async function getStaticPaths() {
 
     const products = data.products; // get array of products from response
     // make array of product pages (page slugs)
-    const paths = products.map((doc) => {
+    const paths = products.map((_product) => {
         return {
-            params: { slug: doc.slug },
+            params: { slug: _product.slug },
         };
     });
 
