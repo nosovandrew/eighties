@@ -12,7 +12,7 @@ const SkusSchema = new mongoose.Schema({
         index: true,
         unique: true,
     },
-    qty: {
+    qtyInStock: {
         type: Number,
         required: true,
         min: 0,

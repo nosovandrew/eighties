@@ -46,7 +46,7 @@ export const typeDefs = gql`
     "Used in Product type."
     type ProductSkus {
         sku: String!
-        qty: Int!
+        qtyInStock: Int!
         options: SkusOptions!
     }
 
