@@ -7,7 +7,8 @@
             "@/styles/*": ["src/styles/*"],
             "@/lib/*": ["src/lib/*"],
             "@/db/*": ["src/db/*"],
-            "@/apollo/*": ["src/apollo/*"]
+            "@/apollo/*": ["src/apollo/*"],
+            "@/contexts/*": ["src/contexts/*"]
         }
     }
 }
