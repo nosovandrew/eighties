@@ -11,9 +11,9 @@ export const actions = {
 export const increase = (productId, cart) => {
     // args: productId (id of product), cart (existing cart in local state)
     const { items } = cart; // get specific field from cart obj
-    const newItems = [...items]; // copy items array
+    const updatedItems = [...items]; // copy items array
     // qty + 1 for the desired product
-    newItems.forEach((item) => {
+    updatedItems.forEach((item) => {
         if (item._id === productId) item.qtyForSale += 1;
     });
 
@@ -21,7 +21,7 @@ export const increase = (productId, cart) => {
         type: 'INCREASE',
         payload: {
             ...cart,
-            items: newItems,
+            items: updatedItems,
         },
     };
 };
@@ -30,9 +30,9 @@ export const increase = (productId, cart) => {
 export const decrease = (productId, cart) => {
     // args: productId (id of product), cart (existing cart in local state)
     const { items } = cart; // get specific field from cart obj
-    const newItems = [...items]; // copy items array
+    const updatedItems = [...items]; // copy items array
     // qty - 1 for the desired product
-    newItems.forEach((item) => {
+    updatedItems.forEach((item) => {
         if (item._id === productId) item.qtyForSale -= 1;
     });
 
@@ -40,7 +40,7 @@ export const decrease = (productId, cart) => {
         type: 'DECREASE',
         payload: {
             ...cart,
-            items: newItems,
+            items: updatedItems,
         },
     };
 };
@@ -60,16 +60,8 @@ export const addToCart = (product, cart) => {
             },
         };
     } else {
-        // <<< should I use decrease func here ??? >>>
         // product already exist -> increase qty
-        const updatedItems = [...items];
-        updatedItems.forEach((item) => {
-            if (item._id === product._id) item.qtyForSale += 1;
-        });
-        return { type: 'ADD_TO_CART', payload: {
-            ...cart,
-            items: updatedItems,
-        } };
+        return increase(product._id, cart);
     }
 };
 
