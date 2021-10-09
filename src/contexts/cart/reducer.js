@@ -4,28 +4,25 @@ import { actions } from './actions'; // state changer types
 // all logic placed in actions
 const CartReducer = (state, action) => {
     switch (action.type) {
-        case actions.ADD_TO_CART:
+        case actions.ADD_ITEM:
+            console.log(state);
+            console.log(action);
             return {
                 ...state,
                 cart: action.payload,
             };
-        case actions.REMOVE_FROM_CART:
+        case actions.REMOVE_ITEM:
             return {
                 ...state,
                 cart: action.payload,
             };
-        case actions.INCREASE:
-            return {
-                ...state,
-                cart: action.payload,
-            };
-        case actions.DECREASE:
+        case actions.UPDATE_ITEM:
             return {
                 ...state,
                 cart: action.payload,
             };
         default:
-            throw new Error("No action specified.");
+            throw new Error('No action specified.');
     }
 };
 
