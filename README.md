@@ -4,7 +4,7 @@
 
 - [x] GraphQL supporting;
 - [x] products and collections (drops) static rendering;
-- [ ] basic cart functionality;
+- [x] basic cart functionality;
 - [ ] persistent cart (cookies or localStorage);
 - [ ] order page functionality;
 - [ ] payment functionality;
