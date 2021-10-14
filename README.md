@@ -9,6 +9,8 @@
   - [x] add backup cart functionality;
   - [ ] check if user changed localStorage values (for example, reduce price);
 - [ ] order page functionality;
+  - [ ] simple order (without payment);
+  - [ ] order with payment;
 - [ ] payment functionality;
 - [ ] *optional* create and store user token + carts, orders, payments linked to it in db;
 - [ ] Simple DESIGN:
