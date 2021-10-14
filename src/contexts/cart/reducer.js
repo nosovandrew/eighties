@@ -5,8 +5,6 @@ import { actions } from './actions'; // state changer types
 const CartReducer = (state, action) => {
     switch (action.type) {
         case actions.ADD_ITEM:
-            console.log(state);
-            console.log(action);
             return {
                 ...state,
                 cart: action.payload,

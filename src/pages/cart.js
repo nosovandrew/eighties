@@ -1,12 +1,16 @@
 import { useContext } from 'react';
-import { useRouter } from 'next/router';
 
 import { CartContext } from '@/contexts/cart/context';
-import { increase, decrease, removeFromCart } from '@/contexts/cart/actions';
+import {
+    increase,
+    decrease,
+    removeFromCart,
+} from '@/contexts/cart/actions';
 
 export default function Cart() {
     const { state, dispatch } = useContext(CartContext);
-    const { cart } = state;
+    const { cart } = state; // get cart item from state
+
     return (
         <>
             <h1>Корзина</h1>
