@@ -5,7 +5,8 @@
 - [x] GraphQL supporting;
 - [x] products and collections (drops) static rendering;
 - [x] basic cart functionality;
-- [ ] persistent cart (cookies or localStorage);
+- [x] persistent cart (❌cookies or ✅localStorage);
+  - [ ] check if user changed localStorage values (for example, reduce price)
 - [ ] order page functionality;
 - [ ] payment functionality;
 - [ ] *optional* create and store user token + carts, orders, payments linked to it in db;
