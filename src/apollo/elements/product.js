@@ -4,6 +4,9 @@ import Product from '@/db/models/product';
 
 // graphql schema for product entity
 export const typeDefs = gql`
+    # add custom types
+    scalar ObjectId
+
     # extend for divide schema on modules (root Query in schema.js)
     extend type Query {
         "Get all products in db."
@@ -12,12 +15,11 @@ export const typeDefs = gql`
         productsByDrop(drop: Int!): [Product!]!
         "Get only one product with specific slug string."
         productBySlug(slug: String!): Product!
+        "Get only one product with specific ID."
+        productById(id: ObjectId!): Product!
         "Get all drops (releases) in db."
         drops: [Int!]!
     }
-
-    # add custom types
-    scalar ObjectId
 
     "Item (product) in shop (related to drop number)."
     type Product {
@@ -91,8 +93,6 @@ export const resolvers = {
                 console.error(err);
             }
         },
-        /* 
-        // can be useful in future
         // get product with specific _id (MongoDB ObjectID type) 
         productById: async (_parent, args, _context, _info) => {
             try {
@@ -102,7 +102,7 @@ export const resolvers = {
             } catch (err) {
                 console.error(err);
             }
-        }, */
+        },
         // get product with specific slug
         productBySlug: async (_parent, args, _context, _info) => {
             // slug scalar is needed!
