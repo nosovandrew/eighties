@@ -28,7 +28,7 @@ const SkusSchema = new mongoose.Schema({
     },
 });
 
-const ProductsSchema = new mongoose.Schema(
+const ProductSchema = new mongoose.Schema(
     {
         item: {
             type: String,
@@ -77,4 +77,4 @@ const ProductsSchema = new mongoose.Schema(
 );
 
 module.exports =
-    mongoose.models.Product || mongoose.model('Product', ProductsSchema);
+    mongoose.models.Product || mongoose.model('Product', ProductSchema);
