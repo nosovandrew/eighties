@@ -4,6 +4,7 @@ const MONGODB_OBJECTID_REGEX = /^[A-Fa-f0-9]{24}$/;
 
 export default new GraphQLScalarType({
     name: 'ObjectId',
+    
     description: 'The `ObjectId` scalar type represents a mongoDB unique ID',
 
     serialize(value) {
@@ -19,7 +20,7 @@ export default new GraphQLScalarType({
     parseValue(value) {
         if (!MONGODB_OBJECTID_REGEX.test(value)) {
             throw new TypeError(
-                `Value is not a valid mongodb object id of form: ${value}`
+                `Value isn't a valid mongodb object id of form: ${value}`
             );
         }
 
