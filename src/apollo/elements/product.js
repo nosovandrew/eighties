@@ -28,13 +28,12 @@ export const typeDefs = gql`
         price: ProductPrice!
         features: [String!]!
         drop: Int!
-        skus: [ProductSkus!]!
+        skus: [ProductSku!]!
         slug: String!
     }
 
     "Used in Product type."
     type ProductPrice {
-        "Price value"
         base: Float!
         currency: PriceCurrency
     }
@@ -46,18 +45,18 @@ export const typeDefs = gql`
     }
 
     "Used in Product type."
-    type ProductSkus {
+    type ProductSku {
         sku: String!
         qtyInStock: Int!
-        options: SkusOptions!
+        options: SkuOptions!
     }
 
-    "Used in ProductSkus type."
-    type SkusOptions {
+    "Used in ProductSku type."
+    type SkuOptions {
         size: OptionsSize
     }
 
-    "Used in Product>SkusOptions type."
+    "Used in Product>SkuOptions type."
     enum OptionsSize {
         ONESIZE
         XXS
@@ -93,7 +92,8 @@ export const resolvers = {
                 console.error(err);
             }
         },
-        // get product with specific _id (MongoDB ObjectID type) 
+        // get product with specific _id (MongoDB ObjectID type)
+        // <need to make array of ids>
         productById: async (_parent, args, _context, _info) => {
             try {
                 const product = await Product.findById({ _id: args.id });

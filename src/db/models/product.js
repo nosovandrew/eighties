@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 const atLeastOneSku = (value) => value.length > 0;
 
 // Schemas
-const SkusSchema = new mongoose.Schema({
+const SkuSchema = new mongoose.Schema({
     sku: {
         type: String,
         trim: true,
@@ -60,7 +60,7 @@ const ProductSchema = new mongoose.Schema(
             ],
         },
         skus: {
-            type: [SkusSchema],
+            type: [SkuSchema],
             validate: [atLeastOneSku, 'At least one SKU required.'],
         },
         slug: {
