@@ -33,7 +33,8 @@ export const typeDefs = gql`
 
     "Return of createOreder mutation."
     type CreateOrderPayload {
-        order: Order!
+        recordId: ObjectId!
+        record: Order
     }
 
     "Customer cart with shipping and contact info (order)."
@@ -69,10 +70,11 @@ export const resolvers = {
         createOrder: async (_parent, args, _context, _info) => {
             // saving new order
             try {
-                const order = new Order(args.input); // create order via mongoose model (generate _id)
-                await order.save(); // save order in db
+                const newOrder = new Order(args.input); // create order via mongoose model (generate _id)
+                const record = await newOrder.save(); // save order in db and return new record (from db)
+                const recordId = record._id;
 
-                return { order };
+                return { recordId, record };
             } catch (err) {
                 console.error(err);
             }
