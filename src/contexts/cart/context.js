@@ -11,6 +11,7 @@ export const CartContextProvider = ({ children }) => {
         cart: {
             items: [],
             total: 0,
+            currency: 'RUB', // default currency value
         },
     };
     const [state, dispatch] = useReducer(cartReducer, initialState); // init reducer
