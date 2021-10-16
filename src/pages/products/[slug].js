@@ -1,7 +1,23 @@
+import { useContext } from 'react';
 import { useRouter } from 'next/router';
-import { request, gql } from 'graphql-request';
+import { request } from 'graphql-request';
+import Link from 'next/link';
+
+import { CartContext } from '@/contexts/cart/context';
+import { addToCart } from '@/contexts/cart/actions';
+import { SLUGS, PRODUCT_BY_SLUG } from '@/apollo/client/queries';
 
 export default function Product({ product }) {
+    const { _id, item, price, features, skus } = product; // separate product object
+    const { state, dispatch } = useContext(CartContext); // get global cart state
+    const { cart } = state; // get only cart from state
+    // short product obj for adding to cart (with selected sku *in future*)
+    const newCartItem = {
+        _id,
+        item,
+        price: price.base, // add only price value
+        sku: skus[0].sku,
+    };
     // show `loader` if page isn't pre-rendered
     const router = useRouter();
     if (router.isFallback) {
@@ -10,33 +26,23 @@ export default function Product({ product }) {
 
     return (
         <>
-            <span>{product.item}</span>
-            <br />
-            <span>{product.price.base}</span>
-            <br />
-            {product.features.map((_feature) => (
-                <span key={product.features.indexOf(_feature)}>
-                    {_feature}
-                    <br />
-                </span>
+            <h1>{item}</h1>
+            <p>{price.base}</p>
+            {features.map((_feature) => (
+                <p key={features.indexOf(_feature)}>{_feature}</p>
             ))}
-            <br />
-            <span>{product.skus[0].qty}</span>
+            <p>QTY: {skus[0].qtyInStock}</p>
+            <button onClick={() => dispatch(addToCart(newCartItem, cart))}>
+                В корзину
+            </button>
+            <Link href='/cart'>Корзина</Link>
         </>
     );
 }
 
 // pre-render pages for all products in db
 export async function getStaticPaths() {
-    const query = gql`
-        query ListOfProducts {
-            products {
-                slug
-            }
-        }
-    `;
-
-    const data = await request(process.env.API_ENDPOINT, query);
+    const data = await request(process.env.API_ENDPOINT, SLUGS); // SLUGS query imported
 
     const products = data.products; // get array of products from response
     // make array of product pages (page slugs)
@@ -57,24 +63,12 @@ export async function getStaticProps({ params }) {
     const variables = {
         ProductSlug: slug,
     };
-    const query = gql`
-        query CertainProductBySlug($ProductSlug: String!) {
-            productBySlug(slug: $ProductSlug) {
-                item
-                features
-                price {
-                    base
-                    currency
-                }
-                skus {
-                    sku
-                    qty
-                }
-            }
-        }
-    `;
 
-    const data = await request(process.env.API_ENDPOINT, query, variables);
+    const data = await request(
+        process.env.API_ENDPOINT,
+        PRODUCT_BY_SLUG,
+        variables
+    ); // PRODUCT_BY_SLUG query imported
     // return `Not Found` page if there isn't data (needed if `fallback: true`)
     if (!data) {
         return {

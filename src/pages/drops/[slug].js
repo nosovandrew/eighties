@@ -1,6 +1,8 @@
 import { useRouter } from 'next/router';
 import { request, gql } from 'graphql-request';
-import Link from "next/link";
+import Link from 'next/link';
+
+import { DROPS, PRODUCTS_BY_DROP } from '@/apollo/client/queries';
 
 export default function Shop({ products }) {
     // show `loader` if page isn't pre-rendered
@@ -12,8 +14,12 @@ export default function Shop({ products }) {
     return (
         <ul>
             {products.map((_product) => (
+                // separate _product
                 <li key={_product._id}>
-                    <Link href="/products/[slug]" as={`/products/${_product.slug}`}>
+                    <Link
+                        href='/products/[slug]'
+                        as={`/products/${_product.slug}`}
+                    >
                         {_product.item}
                     </Link>
                 </li>
@@ -24,13 +30,7 @@ export default function Shop({ products }) {
 
 // pre-render pages for all drops (releases) in db
 export async function getStaticPaths() {
-    const query = gql`
-        query ListOfDrops {
-            drops
-        }
-    `;
-
-    const data = await request(process.env.API_ENDPOINT, query);
+    const data = await request(process.env.API_ENDPOINT, DROPS); // DROPS query imported
 
     const drops = data.drops; // get array of drops from response
     // make array of drop pages (page slugs)
@@ -53,22 +53,12 @@ export async function getStaticProps({ params }) {
     const variables = {
         DropNumber: parseInt(slug, 10),
     };
-    const query = gql`
-        query ListOfProductsByDrop($DropNumber: Int!) {
-            productsByDrop(drop: $DropNumber) {
-                _id
-                item
-                features
-                price {
-                    base
-                    currency
-                }
-                slug
-            }
-        }
-    `;
 
-    const data = await request(process.env.API_ENDPOINT, query, variables);
+    const data = await request(
+        process.env.API_ENDPOINT,
+        PRODUCTS_BY_DROP,
+        variables
+    ); // PRODUCTS_BY_DROP query imported
     // return `Not Found` page if there isn't data (needed if `fallback: true`)
     if (!data) {
         return {
