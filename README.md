@@ -3,6 +3,9 @@
 ### In progress:
 
 - [x] GraphQL supporting;
+- [ ] GraphQL ADVANCED supporting:
+  - [ ] return mutation status;
+  - [ ] handle custom errors;
 - [x] products and collections (drops) static rendering;
 - [x] basic cart functionality;
 - [ ] persistent cart (❌cookies or ✅localStorage);
