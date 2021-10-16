@@ -64,7 +64,7 @@ export const removeFromCart = (productId, cart) => {
 // calc total price of current cart
 const calculateTotal = (items) =>
     // args: items (current cart items for calc tital price)
-    items.reduce((total, item) => total + item.qtyForSale * item.price.base, 0);
+    items.reduce((total, item) => total + item.qtyForSale * item.price, 0);
 
 // common result for action (return)
 const generateActionResult = (type, updatedItems, cart) => {
