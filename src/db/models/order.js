@@ -32,9 +32,27 @@ const ItemsSchema = new mongoose.Schema({
 });
 
 const OrderSchema = new mongoose.Schema({
-    shippingAddress: {
-        type: String,
-        required: true,
+    shipping: {
+        firstName: {
+            type: String,
+            required: true,
+            trim: true,
+        },
+        lastName: {
+            type: String,
+            required: true,
+            trim: true,
+        },
+        address: {
+            type: String,
+            required: true,
+            trim: true,
+        },
+        postalCode: {
+            type: String,
+            required: true,
+            trim: true,
+        }
     },
     phoneNumber: {
         type: String,

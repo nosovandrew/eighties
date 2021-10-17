@@ -15,11 +15,19 @@ export const typeDefs = gql`
 
     "Input type with all arguments for createOrder mutation."
     input CreateOrderInput {
-        shippingAddress: String!
+        shipping: OrderShippingInput!
         phoneNumber: PhoneNumber!
         items: [OrderItemInput!]!
         total: Int!
         currency: OrderCurrencyEnum
+    }
+
+    "Used in CreateOrderInput (shipping info)."
+    input OrderShippingInput {
+        firstName: String!
+        lastName: String!
+        address: String!
+        postalCode: String! # scalar
     }
 
     "Used in CreateOrderInput (cart item)."
@@ -40,11 +48,19 @@ export const typeDefs = gql`
     "Customer cart with shipping and contact info (order)."
     type Order {
         _id: ObjectId!
-        shippingAddress: String!
+        shipping: OrderShipping!
         phoneNumber: PhoneNumber!
         items: [OrderItem!]!
         total: Int!
         currency: OrderCurrencyEnum
+    }
+
+    "Used in Order type (order shipping info)"
+    type OrderShipping {
+        firstName: String!
+        lastName: String!
+        address: String!
+        postalCode: String! # scalar
     }
 
     "Used in Order type (describes item in cart)."
