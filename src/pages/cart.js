@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { useRouter } from 'next/router';
 
 import { CartContext } from '@/contexts/cart/context';
 import {
@@ -8,6 +9,7 @@ import {
 } from '@/contexts/cart/actions';
 
 export default function Cart() {
+    const router = useRouter(); // for redirecting to order page
     const { state, dispatch } = useContext(CartContext);
     const { cart } = state; // get cart item from state
 
@@ -54,6 +56,7 @@ export default function Cart() {
                     })
                 )}
             </ul>
+            <button onClick={() => router.push('/preorder')}>Сделать предзаказ</button>
         </>
     );
 }
