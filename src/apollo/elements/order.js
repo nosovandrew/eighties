@@ -7,6 +7,12 @@ export const typeDefs = gql`
     scalar ObjectId
     scalar PhoneNumber
 
+    # extend for divide schema on modules (root empty Query in schema.js)
+    extend type Query {
+        "Get order by its identifier."
+        orderById(id: ObjectId!): Order!
+    }
+
     # extend for divide schema on modules (root empty Mutation in schema.js)
     extend type Mutation {
         "Collect order and send to db."
@@ -81,6 +87,18 @@ export const typeDefs = gql`
 
 // graphql resolvers for order entity
 export const resolvers = {
+    Query: {
+        // get order with specific id
+        orderById: async (_parent, args, _context, _info) => {
+            try {
+                const order = await Order.findById({ _id: args.id });
+
+                return order;
+            } catch (err) {
+                console.error(err);
+            }
+        },
+    },
     Mutation: {
         // save collected order in db
         createOrder: async (_parent, args, _context, _info) => {

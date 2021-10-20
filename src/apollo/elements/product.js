@@ -13,10 +13,10 @@ export const typeDefs = gql`
         products: [Product!]!
         "Get all products with specific drop number."
         productsByDrop(drop: Int!): [Product!]!
+        "Get product/products with specific ID (input should be Array)."
+        productsByListOfIds(ids: [ObjectId!]!): [Product!]!
         "Get only one product with specific slug string."
         productBySlug(slug: String!): Product!
-        "Get only one product with specific ID."
-        productById(id: ObjectId!): Product!
         "Get all drops (releases) in db."
         drops: [Int!]!
     }
@@ -94,11 +94,12 @@ export const resolvers = {
         },
         // get product with specific _id (MongoDB ObjectID type)
         // <need to make array of ids>
-        productById: async (_parent, args, _context, _info) => {
+        productsByListOfIds: async (_parent, args, _context, _info) => {
             try {
-                const product = await Product.findById({ _id: args.id });
+                const listOfIds = args.ids; // get list of identifiers
+                const products = await Product.find({ _id: listOfIds }); 
 
-                return product;
+                return products;
             } catch (err) {
                 console.error(err);
             }

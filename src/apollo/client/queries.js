@@ -1,5 +1,7 @@
 import { gql } from 'graphql-request';
 
+// !!! think about names of queries !!!
+
 export const DROPS = gql`
     query ListOfDrops {
         drops
@@ -43,6 +45,30 @@ export const PRODUCT_BY_SLUG = gql`
                 sku
                 qtyInStock
             }
+        }
+    }
+`;
+
+export const PRODUCTS_BY_LIST_OF_IDS = gql`
+    query GetProductsByItsIds($ids: [ObjectId!]!) {
+        productsByListOfIds(ids: $ids) {
+            _id
+            price {
+                base
+                currency
+            }
+            skus {
+                sku
+                qtyInStock
+            }
+        }
+    }
+`;
+
+export const ORDER_BY_ID = gql`
+    query GetOrderByItsId($OrderId: ObjectId!) {
+        orderById(id: $OrderId) {
+            total
         }
     }
 `;
