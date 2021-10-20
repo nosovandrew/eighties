@@ -4,6 +4,7 @@ export const actions = {
     ADD_ITEM: 'ADD_ITEM',
     REMOVE_ITEM: 'REMOVE_ITEM',
     UPDATE_ITEM: 'UPDATE_ITEM',
+    CLEAR_CART: 'CLEAR_CART',
 };
 
 // state changers (actions) logic
@@ -18,7 +19,7 @@ export const increase = (productId, cart) => {
         if (item._id === productId) item.qtyForSale += 1;
     });
 
-    return generateActionResult(actions.UPDATE_ITEM, updatedItems, cart);
+    return generateCompleteState(actions.UPDATE_ITEM, updatedItems, cart);
 };
 
 // decrease qtyForSale of product in cart
@@ -31,7 +32,7 @@ export const decrease = (productId, cart) => {
         if (item._id === productId) item.qtyForSale -= 1;
     });
 
-    return generateActionResult(actions.UPDATE_ITEM, updatedItems, cart);
+    return generateCompleteState(actions.UPDATE_ITEM, updatedItems, cart);
 };
 
 // add new product to cart (or increase qtyForSale of existed product)
@@ -43,7 +44,7 @@ export const addToCart = (product, cart) => {
         // product is new -> just add new item with minimal qty
         const updatedItems = [...items, { ...product, qtyForSale: 1 }]; // updated items field [new item]
 
-        return generateActionResult(actions.ADD_ITEM, updatedItems, cart);
+        return generateCompleteState(actions.ADD_ITEM, updatedItems, cart);
     } else {
         // product already exist -> increase qty
         return increase(product._id, cart);
@@ -56,18 +57,18 @@ export const removeFromCart = (productId, cart) => {
     const { items } = cart; // get specific field from cart obj
     const updatedItems = items.filter((item) => item._id !== productId); // remove product from cart items
 
-    return generateActionResult(actions.REMOVE_ITEM, updatedItems, cart);
+    return generateCompleteState(actions.REMOVE_ITEM, updatedItems, cart);
 };
 
 // state changers (actions) helpers
 
 // calc total price of current cart
-const calculateTotal = (items) =>
+export const calculateTotal = (items) =>
     // args: items (current cart items for calc tital price)
     items.reduce((total, item) => total + item.qtyForSale * item.price, 0);
 
 // common result for action (return)
-const generateActionResult = (type, updatedItems, cart) => {
+export const generateCompleteState = (type, updatedItems, cart) => {
     // args: type (type of state changer `str`), updatedItems (result of actions work), cart (whole cart state)
     return {
         type: type,

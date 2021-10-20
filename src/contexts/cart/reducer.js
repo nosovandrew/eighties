@@ -19,6 +19,12 @@ const CartReducer = (state, action) => {
                 ...state,
                 cart: action.payload,
             };
+        case actions.CLEAR_CART:
+            // hasn't action function, just pass inital cart
+            return {
+                ...state,
+                cart: { items: [], total: 0, currency: 'RUB' },
+            };
         default:
             throw new Error('No action specified.');
     }
