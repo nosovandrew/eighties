@@ -42,6 +42,7 @@ export default function Product({ product }) {
 
 // pre-render pages for all products in db
 export async function getStaticPaths() {
+    // API ENDPOINT MUST BE EXTERNAL
     const data = await request(process.env.API_ENDPOINT, SLUGS); // SLUGS query imported
 
     const products = data.products; // get array of products from response
@@ -63,7 +64,7 @@ export async function getStaticProps({ params }) {
     const variables = {
         ProductSlug: slug,
     };
-
+    // API ENDPOINT MUST BE EXTERNAL
     const data = await request(
         process.env.API_ENDPOINT,
         PRODUCT_BY_SLUG,

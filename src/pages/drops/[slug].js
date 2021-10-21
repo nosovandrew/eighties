@@ -30,6 +30,7 @@ export default function Shop({ products }) {
 
 // pre-render pages for all drops (releases) in db
 export async function getStaticPaths() {
+    // API ENDPOINT MUST BE EXTERNAL
     const data = await request(process.env.API_ENDPOINT, DROPS); // DROPS query imported
 
     const drops = data.drops; // get array of drops from response
@@ -53,7 +54,7 @@ export async function getStaticProps({ params }) {
     const variables = {
         DropNumber: parseInt(slug, 10),
     };
-
+    // API ENDPOINT MUST BE EXTERNAL
     const data = await request(
         process.env.API_ENDPOINT,
         PRODUCTS_BY_DROP,
