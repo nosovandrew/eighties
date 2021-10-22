@@ -6,6 +6,7 @@
 - [ ] GraphQL ADVANCED supporting:
   - [ ] return mutation status;
   - [ ] handle custom errors;
+  - [ ] 🔥🔥🔥 external GraphQL API (backend server) -> will solve problem with gql queries in getStaticProps/getStaticPaths in build mode.
 - [x] products and collections (drops) static rendering;
 - [x] basic cart functionality;
 - [ ] persistent cart (❌cookies or ✅localStorage);
