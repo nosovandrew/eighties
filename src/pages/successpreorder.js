@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 import { ORDER_BY_ID } from '@/apollo/client/queries';
 
-export default function SuccessPreorder() {
+export default function Success() {
     const {
         query: { id },
     } = useRouter();
@@ -18,7 +18,6 @@ export default function SuccessPreorder() {
 
     if (error) return <div>failed to load</div>
     if (!data) return <div>loading...</div>
-    console.log(data);
 
     return (
         <>
