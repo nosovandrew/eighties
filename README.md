@@ -11,9 +11,9 @@
 - [x] basic cart functionality;
 - [ ] persistent cart (❌cookies or ✅localStorage);
   - [x] add backup cart functionality;
-  - [ ] check if user changed localStorage values (for example, reduce price);
+  - [x] check if user changed localStorage values (for example, reduce price) MAKED: checking before order is throwing to db;
 - [ ] order page functionality;
-  - [ ] simple order/preorder functionality (without payment);
+  - [x] simple order/preorder functionality (without payment);
   - [ ] order with payment;
 - [ ] payment functionality;
 - [ ] *optional* create and store user token + carts, orders, payments linked to it in db;
