@@ -1,16 +1,22 @@
 import { useContext } from 'react';
 import { useRouter } from 'next/router';
-import { request } from 'graphql-request';
 import Link from 'next/link';
 
 import { CartContext } from '@/contexts/cart/context';
 import { addToCart } from '@/contexts/cart/actions';
-import { SLUGS, PRODUCT_BY_SLUG } from '@/apollo/client/queries';
+// import for direct access to DB (see SSG funcs)
+import dbConnect from '@/lib/dbConnect';
+import ProductModel from '@/db/models/product';
 
 export default function Product({ product }) {
-    const { _id, item, price, features, skus } = product; // separate product object
+    const router = useRouter();
     const { state, dispatch } = useContext(CartContext); // get global cart state
     const { cart } = state; // get only cart from state
+    // show `loader` if page isn't pre-rendered
+    if (router.isFallback) {
+        return <div>Loading...</div>;
+    }
+    const { _id, item, price, features, skus } = product; // separate product object
     // short product obj for adding to cart (with selected sku *in future*)
     const newCartItem = {
         _id,
@@ -18,11 +24,6 @@ export default function Product({ product }) {
         price: price.base, // add only price value
         sku: skus[0].sku,
     };
-    // show `loader` if page isn't pre-rendered
-    const router = useRouter();
-    if (router.isFallback) {
-        return <div>Loading...</div>;
-    }
 
     return (
         <>
@@ -40,15 +41,16 @@ export default function Product({ product }) {
     );
 }
 
+// NOTE: getStaticProps/getStaticPaths needs direct access to DB cause API Routes gql endpoint isn't available during build process
+
 // pre-render pages for all products in db
 export async function getStaticPaths() {
-    const data = await request(process.env.API_ENDPOINT, SLUGS); // SLUGS query imported
-
-    const products = data.products; // get array of products from response
+    await dbConnect(); // connect to DB
+    const products = await ProductModel.find({}, { slug: 1 }); // get all products (only slug field)
     // make array of product pages (page slugs)
     const paths = products.map((_product) => {
         return {
-            params: { slug: _product.slug },
+            params: { slug: _product.slug.toString() }, // ObjectID to String
         };
     });
 
@@ -58,24 +60,20 @@ export async function getStaticPaths() {
 
 // get data for each product page
 export async function getStaticProps({ params }) {
+    await dbConnect(); // connect to DB
     const { slug } = params; // get slug of page
-    // throw slug to gql query
-    const variables = {
-        ProductSlug: slug,
-    };
-
-    const data = await request(
-        process.env.API_ENDPOINT,
-        PRODUCT_BY_SLUG,
-        variables
-    ); // PRODUCT_BY_SLUG query imported
+    // get product by certain slug (return only needs fields)
+    const product = await ProductModel.findOne(
+        { slug },
+        { price: 1, features: 1, item: 1, drop: 1, skus: 1 }
+    ).lean(); // lean skip hydrating (document type) the result documents
     // return `Not Found` page if there isn't data (needed if `fallback: true`)
-    if (!data) {
+    if (!product) {
         return {
             notFound: true,
         };
     }
-    const product = data.productBySlug; // get product data from response
+    product._id = await product._id.toString(); // ObjectId to String
 
     // revalidate set the time (in sec) of re-generate page (it imitate SSR)
     return { props: { product }, revalidate: 300 };

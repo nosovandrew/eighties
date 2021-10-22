@@ -2,11 +2,13 @@ import { useRouter } from 'next/router';
 import { request, gql } from 'graphql-request';
 import Link from 'next/link';
 
-import { DROPS, PRODUCTS_BY_DROP } from '@/apollo/client/queries';
+// import for direct access to DB (see SSG funcs)
+import dbConnect from '@/lib/dbConnect';
+import ProductModel from '@/db/models/product';
 
 export default function Shop({ products }) {
-    // show `loader` if page isn't pre-rendered
     const router = useRouter();
+    // show `loader` if page isn't pre-rendered
     if (router.isFallback) {
         return <div>Loading...</div>;
     }
@@ -28,11 +30,12 @@ export default function Shop({ products }) {
     );
 }
 
+// NOTE: getStaticProps/getStaticPaths needs direct access to DB cause API Routes gql endpoint isn't available during build process
+
 // pre-render pages for all drops (releases) in db
 export async function getStaticPaths() {
-    const data = await request(process.env.API_ENDPOINT, DROPS); // DROPS query imported
-
-    const drops = data.drops; // get array of drops from response
+    await dbConnect(); // connect to DB
+    const drops = await ProductModel.distinct('drop'); // get all drops (array of numbers)
     // make array of drop pages (page slugs)
     const paths = drops.map((_drop) => {
         return {
@@ -48,24 +51,24 @@ export async function getStaticPaths() {
 
 // get data for each drop page
 export async function getStaticProps({ params }) {
+    await dbConnect(); // connect to DB
     const { slug } = params; // get slug of page
-    // throw slug to gql query
-    const variables = {
-        DropNumber: parseInt(slug, 10),
-    };
-
-    const data = await request(
-        process.env.API_ENDPOINT,
-        PRODUCTS_BY_DROP,
-        variables
-    ); // PRODUCTS_BY_DROP query imported
+    // get array of products (+ product data) from response (slug is number of drop)
+    const productsData = await ProductModel.find(
+        { drop: slug },
+        { price: 1, features: 1, item: 1, drop: 1, skus: 1, slug: 1 }
+    ).lean(); // lean skip hydrating (document type) the result documents
     // return `Not Found` page if there isn't data (needed if `fallback: true`)
-    if (!data) {
+    if (!productsData) {
         return {
             notFound: true,
         };
     }
-    const products = data.productsByDrop; // get array of products (+ product data) from response
+    // convert ObjectId to String for each product
+    const products = productsData.map((_product) => {
+        _product._id = _product._id.toString();
+        return _product;
+    });
 
     // revalidate set the time (in sec) of re-generate page (it imitate SSR)
     return { props: { products }, revalidate: 300 };
