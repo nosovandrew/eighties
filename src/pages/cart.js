@@ -1,12 +1,9 @@
 import { useContext } from 'react';
 import { useRouter } from 'next/router';
 
+import Layout from '@/components/templates/layout';
+import CartItemCard from '@/components/molecules/cartItemCard';
 import { CartContext } from '@/contexts/cart/context';
-import {
-    increase,
-    decrease,
-    removeFromCart,
-} from '@/contexts/cart/actions';
 
 export default function Cart() {
     const router = useRouter(); // for redirecting to order page
@@ -14,49 +11,28 @@ export default function Cart() {
     const { cart } = state; // get cart item from state
 
     return (
-        <>
+        <Layout>
             <h1>Корзина</h1>
             <ul>
                 {cart.items.length === 0 ? (
+                    // return if cart is empty
                     <p>Корзина пуста..</p>
                 ) : (
-                    cart.items.map((_item) => {
-                        const { _id, item, qtyForSale } = _item;
-
-                        return (
-                            <li key={_id}>
-                                {`NAME: ${item} QTY: ${qtyForSale}`}{' '}
-                                <button
-                                    onClick={() =>
-                                        dispatch(increase(_id, cart))
-                                    }
-                                >
-                                    +
-                                </button>
-                                {qtyForSale > 1 && (
-                                    <button
-                                        onClick={() =>
-                                            dispatch(decrease(_id, cart))
-                                        }
-                                    >
-                                        -
-                                    </button>
-                                )}
-                                {qtyForSale === 1 && (
-                                    <button
-                                        onClick={() =>
-                                            dispatch(removeFromCart(_id, cart))
-                                        }
-                                    >
-                                        Удалить
-                                    </button>
-                                )}
-                            </li>
-                        );
-                    })
+                    cart.items.map((_item) => (
+                        // return CartItem card for each item in cart
+                        <CartItemCard
+                            key={_item._id}
+                            cartItem={_item}
+                            dispatch={dispatch}
+                            cart={cart}
+                        />
+                    ))
                 )}
             </ul>
-            <button onClick={() => router.push('/preorder')}>Сделать предзаказ</button>
-        </>
+            <p>Общая сумма: {cart.total}</p>
+            <button onClick={() => router.push('/preorder')}>
+                Сделать предзаказ
+            </button>
+        </Layout>
     );
 }

@@ -1,7 +1,8 @@
 import { useRouter } from 'next/router';
-import { request, gql } from 'graphql-request';
 import Link from 'next/link';
 
+import Layout from '@/components/templates/layout';
+import ProductCard from '@/components/molecules/productCard';
 // import for direct access to DB (see SSG funcs)
 import dbConnect from '@/lib/dbConnect';
 import ProductModel from '@/db/models/product';
@@ -14,19 +15,14 @@ export default function Shop({ products }) {
     }
 
     return (
-        <ul>
-            {products.map((_product) => (
-                // separate _product
-                <li key={_product._id}>
-                    <Link
-                        href='/products/[slug]'
-                        as={`/products/${_product.slug}`}
-                    >
-                        {_product.item}
-                    </Link>
-                </li>
-            ))}
-        </ul>
+        <Layout>
+            <ul>
+                {products.map((_product) => (
+                    // return ProductCard for each product
+                    <ProductCard key={_product._id} product={_product} />
+                ))}
+            </ul>
+        </Layout>
     );
 }
 
