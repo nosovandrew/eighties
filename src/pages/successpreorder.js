@@ -1,6 +1,7 @@
 import useSWR from 'swr';
 import { request } from 'graphql-request';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 import { ORDER_BY_ID } from '@/apollo/client/queries';
 
@@ -23,6 +24,7 @@ export default function Success() {
         <>
             <h1>Оформлен</h1>
             <p>Общая сумма: {data.orderById.total}</p>
+            <Link href='/'>На главную</Link>
         </>
     );
 }

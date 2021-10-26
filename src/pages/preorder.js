@@ -2,6 +2,7 @@ import { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { request } from 'graphql-request';
 
+import Layout from '@/components/templates/layout';
 import { CartContext } from '@/contexts/cart/context';
 import { actions, generateCompleteState } from '@/contexts/cart/actions';
 import { CREATE_ORDER } from '@/apollo/client/mutations';
@@ -100,7 +101,7 @@ export default function Preorder() {
     };
 
     return (
-        <>
+        <Layout>
             <h1>Предзаказ</h1>
             <form onSubmit={handleSubmit}>
                 <h2>Доставка</h2>
@@ -142,6 +143,6 @@ export default function Preorder() {
                 {errors.phoneNumber && <p>{errors.phoneNumber}</p>}
                 <button type='submit'>Заказать</button>
             </form>
-        </>
+        </Layout>
     );
 }

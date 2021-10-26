@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 
 import { CartContext } from '@/contexts/cart/context';
 import { addToCart } from '@/contexts/cart/actions';
+import Layout from '@/components/templates/layout';
 // import for direct access to DB (see SSG funcs)
 import dbConnect from '@/lib/dbConnect';
 import ProductModel from '@/db/models/product';
@@ -26,7 +26,7 @@ export default function Product({ product }) {
     };
 
     return (
-        <>
+        <Layout>
             <h1>{item}</h1>
             <p>{price.base}</p>
             {features.map((_feature) => (
@@ -36,8 +36,7 @@ export default function Product({ product }) {
             <button onClick={() => dispatch(addToCart(newCartItem, cart))}>
                 В корзину
             </button>
-            <Link href='/cart'>Корзина</Link>
-        </>
+        </Layout>
     );
 }
 
