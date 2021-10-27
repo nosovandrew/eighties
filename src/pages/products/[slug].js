@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import { CartContext } from '@/contexts/cart/context';
@@ -12,6 +12,7 @@ export default function Product({ product }) {
     const router = useRouter();
     const { state, dispatch } = useContext(CartContext); // get global cart state
     const { cart } = state; // get only cart from state
+    const [tab, setTab] = useState(0); // product images carousel (number of image)
     // show `loader` if page isn't pre-rendered
     if (router.isFallback) {
         return <div>Loading...</div>;

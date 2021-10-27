@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 // Validation funcs
-const atLeastOneSku = (value) => value.length > 0;
+const atLeastOneItem = (value) => value.length > 0;
 
 // Schemas
 const SkuSchema = new mongoose.Schema({
@@ -27,6 +27,21 @@ const SkuSchema = new mongoose.Schema({
         },
     },
 });
+
+const ImageSchema = new mongoose.Schema(
+    {
+        alt: {
+            type: String,
+            required: true,
+            trim: true,
+        },
+        url: {
+            type: String,
+            required: true,
+            trim: true,
+        }
+    }
+)
 
 const ProductSchema = new mongoose.Schema(
     {
@@ -61,7 +76,7 @@ const ProductSchema = new mongoose.Schema(
         },
         skus: {
             type: [SkuSchema],
-            validate: [atLeastOneSku, 'At least one SKU required.'],
+            validate: [atLeastOneItem, 'At least one SKU required.'],
         },
         slug: {
             type: String,
@@ -70,6 +85,10 @@ const ProductSchema = new mongoose.Schema(
             index: true,
             unique: true,
         },
+        images: {
+            type: [ImageSchema],
+            validate: [atLeastOneItem, 'At least one product image required.'],
+        }
     },
     {
         timestamps: true,

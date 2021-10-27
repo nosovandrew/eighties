@@ -30,6 +30,7 @@ export const typeDefs = gql`
         drop: Int!
         skus: [ProductSku!]!
         slug: String!
+        images: [ProductImage!]!
     }
 
     "Used in Product type."
@@ -66,6 +67,12 @@ export const typeDefs = gql`
         L
         XL
         XXL
+    }
+
+    "Used in Product type."
+    type ProductImage {
+        alt: String!
+        url: String!
     }
 `;
 
