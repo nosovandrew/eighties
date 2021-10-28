@@ -20,7 +20,7 @@ export default function CartItemCard({ cartItem, dispatch, cart }) {
         <ItemContainer>
             <div>
             <Image
-                    alt={image.alt}
+                    alt={image.alt || item}
                     src={image.url}
                     layout='fixed'
                     width={64}
