@@ -1,6 +1,7 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { useRouter } from 'next/router';
 import { request } from 'graphql-request';
+import styled from 'styled-components';
 
 import Layout from '@/components/templates/layout';
 import { CartContext } from '@/contexts/cart/context';
@@ -9,11 +10,15 @@ import { CREATE_ORDER } from '@/apollo/client/mutations';
 import { PRODUCTS_BY_LIST_OF_IDS } from '@/apollo/client/queries';
 import { useForm } from '@/hooks/useForm';
 
+const StyledForm = styled.form`
+    display: flex;
+    flex-direction: column;
+`;
+
 export default function Preorder() {
     const router = useRouter(); // for redirecting to success page
     const { state, dispatch } = useContext(CartContext);
     const { cart } = state; // get cart from state
-    const { items, total, currency } = cart; // get `items array`, `total` and `currency` from cart
     // define form with custom hook
     const {
         handleSubmit,
@@ -62,16 +67,18 @@ export default function Preorder() {
                 price: productFromDB.price.base, // unmodified price from DB
                 sku: item.sku,
                 qtyForSale: item.qtyForSale,
+                // image: item.image isn't necessary in db (removed)
             });
         });
-        await dispatch(
-            generateCompleteState(actions.ADD_ITEM, checkedItems, cart)
-        ); // update cart with checked items
+
+        // generate local (not in context) cart with checked items for throwing to db as order part
+        // using actions helper generateCompleteState WITHOUT dispatch!
+        return generateCompleteState('not_action', checkedItems, cart);
     };
     // handle click on order btn
     const placeOrderHandler = async () => {
         try {
-            await checkCart(); // check cart for malicious changes
+            const { payload: checkedCart } = await checkCart(); // check cart for malicious changes, then get new updated cart obg
             // input for CREATE_ORDER gql mutation
             const variables = {
                 input: {
@@ -82,9 +89,9 @@ export default function Preorder() {
                         postalCode,
                     },
                     phoneNumber,
-                    items,
-                    total,
-                    currency,
+                    items: checkedCart.items,
+                    total: checkedCart.total,
+                    currency: checkedCart.currency,
                 },
             };
             // create order in DB
@@ -103,7 +110,7 @@ export default function Preorder() {
     return (
         <Layout>
             <h1>Предзаказ</h1>
-            <form onSubmit={handleSubmit}>
+            <StyledForm onSubmit={handleSubmit}>
                 <h2>Доставка</h2>
                 <input
                     placeholder='Имя'
@@ -142,7 +149,7 @@ export default function Preorder() {
                 />
                 {errors.phoneNumber && <p>{errors.phoneNumber}</p>}
                 <button type='submit'>Заказать</button>
-            </form>
+            </StyledForm>
         </Layout>
     );
 }
