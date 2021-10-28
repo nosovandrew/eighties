@@ -5,6 +5,8 @@ const GlobalStyle = createGlobalStyle`
         /* Colors */
         --color-primary: #ffffff;
         --text-primary: #000;
+        /* Spacing */
+        --basic-spacing: 8px;
         /* Font */
         --font-sans: 'Roboto', -apple-system, system-ui, BlinkMacSystemFont, 'Helvetica Neue',
         'Helvetica', sans-serif;

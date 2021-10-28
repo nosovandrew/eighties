@@ -1,11 +1,17 @@
 import { useRouter } from 'next/router';
-import Link from 'next/link';
+import styled from 'styled-components';
 
 import Layout from '@/components/templates/layout';
 import ProductCard from '@/components/molecules/productCard';
 // import for direct access to DB (see SSG funcs)
 import dbConnect from '@/lib/dbConnect';
 import ProductModel from '@/db/models/product';
+
+const CardsContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
 
 export default function Shop({ products }) {
     const router = useRouter();
@@ -16,12 +22,12 @@ export default function Shop({ products }) {
 
     return (
         <Layout>
-            <ul>
+            <CardsContainer>
                 {products.map((_product) => (
                     // return ProductCard for each product
                     <ProductCard key={_product._id} product={_product} />
                 ))}
-            </ul>
+            </CardsContainer>
         </Layout>
     );
 }
@@ -52,7 +58,7 @@ export async function getStaticProps({ params }) {
     // get array of products (+ product data) from response (slug is number of drop)
     const productsData = await ProductModel.find(
         { drop: slug },
-        { price: 1, features: 1, item: 1, drop: 1, skus: 1, slug: 1 }
+        { price: 1, features: 1, item: 1, drop: 1, skus: 1, slug: 1, images: 1 }
     ).lean(); // lean skip hydrating (document type) the result documents
     // return `Not Found` page if there isn't data (needed if `fallback: true`)
     if (!productsData) {

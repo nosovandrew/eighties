@@ -13,7 +13,7 @@ export default function Cart() {
     return (
         <Layout>
             <h1>Корзина</h1>
-            <ul>
+            <div>
                 {cart.items.length === 0 ? (
                     // return if cart is empty
                     <p>Корзина пуста..</p>
@@ -28,7 +28,7 @@ export default function Cart() {
                         />
                     ))
                 )}
-            </ul>
+            </div>
             <p>Общая сумма: {cart.total}</p>
             <button onClick={() => router.push('/preorder')}>
                 Сделать предзаказ
