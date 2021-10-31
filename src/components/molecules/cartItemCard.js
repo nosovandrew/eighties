@@ -19,13 +19,13 @@ export default function CartItemCard({ cartItem, dispatch, cart }) {
     return (
         <ItemContainer>
             <div>
-            <Image
-                    alt={image.alt || item}
-                    src={image.url}
-                    layout='fixed'
-                    width={64}
-                    height={64}
-                />
+                <Image
+                        alt={image.alt || item}
+                        src={image.url}
+                        layout='fixed'
+                        width={64}
+                        height={64}
+                    />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
                 {item}
