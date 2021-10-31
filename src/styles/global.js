@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
         --text-primary: #000;
         /* Spacing */
         --basic-spacing: 8px;
+        --full-screen-h: calc(100vh - 2*var(--basic-spacing)); // minus global padding (top+bottom)
         /* Font */
         --font-sans: 'Roboto', -apple-system, system-ui, BlinkMacSystemFont, 'Helvetica Neue',
         'Helvetica', sans-serif;
