@@ -10,6 +10,12 @@ import { CREATE_ORDER } from '@/apollo/client/mutations';
 import { PRODUCTS_BY_LIST_OF_IDS } from '@/apollo/client/queries';
 import { useForm } from '@/hooks/useForm';
 
+const OrderContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
 const StyledForm = styled.form`
     display: flex;
     flex-direction: column;
@@ -109,47 +115,49 @@ export default function Preorder() {
 
     return (
         <Layout>
-            <h1>Предзаказ</h1>
-            <StyledForm onSubmit={handleSubmit}>
-                <h2>Доставка</h2>
-                <input
-                    placeholder='Имя'
-                    value={firstName || ''}
-                    onChange={handleChange('firstName')}
-                    required
-                />
-                {errors.firstName && <p>{errors.firstName}</p>}
-                <input
-                    placeholder='Фамилия'
-                    value={lastName || ''}
-                    onChange={handleChange('lastName')}
-                    required
-                />
-                {errors.lastName && <p>{errors.lastName}</p>}
-                <input
-                    placeholder='Адрес'
-                    value={address || ''}
-                    onChange={handleChange('address')}
-                    required
-                />
-                {errors.address && <p>{errors.address}</p>}
-                <input
-                    placeholder='Индекс'
-                    value={postalCode || ''}
-                    onChange={handleChange('postalCode')}
-                    required
-                />
-                {errors.postalCode && <p>{errors.postalCode}</p>}
-                <input
-                    placeholder='Номер телефона'
-                    type='tel'
-                    value={phoneNumber || ''}
-                    onChange={handleChange('phoneNumber')}
-                    required
-                />
-                {errors.phoneNumber && <p>{errors.phoneNumber}</p>}
-                <button type='submit'>Заказать</button>
-            </StyledForm>
+            <OrderContainer>
+                <h1>Предзаказ</h1>
+                <StyledForm onSubmit={handleSubmit}>
+                    <h2>Доставка</h2>
+                    <input
+                        placeholder='Имя'
+                        value={firstName || ''}
+                        onChange={handleChange('firstName')}
+                        required
+                    />
+                    {errors.firstName && <p>{errors.firstName}</p>}
+                    <input
+                        placeholder='Фамилия'
+                        value={lastName || ''}
+                        onChange={handleChange('lastName')}
+                        required
+                    />
+                    {errors.lastName && <p>{errors.lastName}</p>}
+                    <input
+                        placeholder='Адрес'
+                        value={address || ''}
+                        onChange={handleChange('address')}
+                        required
+                    />
+                    {errors.address && <p>{errors.address}</p>}
+                    <input
+                        placeholder='Индекс'
+                        value={postalCode || ''}
+                        onChange={handleChange('postalCode')}
+                        required
+                    />
+                    {errors.postalCode && <p>{errors.postalCode}</p>}
+                    <input
+                        placeholder='Номер телефона'
+                        type='tel'
+                        value={phoneNumber || ''}
+                        onChange={handleChange('phoneNumber')}
+                        required
+                    />
+                    {errors.phoneNumber && <p>{errors.phoneNumber}</p>}
+                    <button type='submit'>Заказать</button>
+                </StyledForm>
+            </OrderContainer>
         </Layout>
     );
 }
