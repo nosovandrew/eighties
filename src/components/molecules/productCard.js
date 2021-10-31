@@ -2,6 +2,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import styled from 'styled-components';
 
+import { StyledTagA } from '@/components/atoms/links';
+
 const CardContainer = styled.div`
     width: fit-content;
     display: flex;
@@ -11,23 +13,30 @@ const CardContainer = styled.div`
     cursor: pointer;
 `;
 
+const ImageContainer = styled.div`
+    margin: 48px var(--basic-spacing);
+`;
+
 export default function ProductCard({ product }) {
     const { item, price, slug, images } = product;
 
     return (
-        <Link href='/products/[slug]' as={`/products/${slug}`}>
-            <a>
+        <Link href='/products/[slug]' as={`/products/${slug}`} passHref>
+            <StyledTagA>
                 <CardContainer>
-                    <Image
-                        alt={images[0].alt}
-                        src={images[0].url}
-                        layout='fixed'
-                        width={300}
-                        height={300}
-                    />
+                    <ImageContainer>
+                        <Image
+                            alt={images[1].alt}
+                            src={images[1].url}
+                            layout='fixed'
+                            width={250}
+                            height={250}
+                        />
+                    </ImageContainer>
                     <span>{item}</span>
+                    <span>{price.base}</span>
                 </CardContainer>
-            </a>
+            </StyledTagA>
         </Link>
     );
 }
