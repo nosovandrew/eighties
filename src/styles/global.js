@@ -7,10 +7,13 @@ const GlobalStyle = createGlobalStyle`
         --text-primary: #000;
         /* Spacing */
         --basic-spacing: 8px;
+        --content-spacing: 64px;
         --full-screen-h: calc(100vh - 2*var(--basic-spacing)); // minus global padding (top+bottom)
         /* Font */
-        --font-sans: 'Roboto', -apple-system, system-ui, BlinkMacSystemFont, 'Helvetica Neue',
+        --font-sans: 'Rubik', 'Roboto', -apple-system, system-ui, BlinkMacSystemFont, 'Helvetica Neue',
         'Helvetica', sans-serif;
+        --font-weight: 500;
+        --font-size: 18px;
 
 
     }
@@ -50,6 +53,8 @@ const GlobalStyle = createGlobalStyle`
         position: relative;
         min-height: 100%;
         margin: 0;
+        font-size: var(---font-size);
+        font-weight: var(---font-weight);
     }
 
     a {
