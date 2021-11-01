@@ -11,7 +11,7 @@ const Container = styled.div`
 `;
 
 const StyledMain = styled.div`
-    margin-top: 64px; // get rid header on mobile
+    margin-top: var(--content-spacing); // get rid header on mobile
 
     @media ${media.md} {
         margin: 0;

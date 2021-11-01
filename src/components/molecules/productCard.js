@@ -14,7 +14,7 @@ const CardContainer = styled.div`
 `;
 
 const ImageContainer = styled.div`
-    margin: 48px var(--basic-spacing);
+    margin: var(--content-spacing) var(--basic-spacing);
 `;
 
 export default function ProductCard({ product }) {
