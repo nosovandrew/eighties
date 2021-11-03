@@ -1,11 +1,15 @@
 import { useContext, useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import styled from 'styled-components';
+
+import { H1, TextItem } from '@/components/atoms/text';
+import { StyledButton } from '@/components/atoms/buttons';
+import Layout from '@/components/templates/layout';
+import { media } from '@/styles/media';
 
 import { CartContext } from '@/contexts/cart/context';
 import { addToCart } from '@/contexts/cart/actions';
-import Layout from '@/components/templates/layout';
-import styled from 'styled-components';
 // import for direct access to DB (see SSG funcs)
 import dbConnect from '@/lib/dbConnect';
 import ProductModel from '@/db/models/product';
@@ -15,6 +19,37 @@ const ProductContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    @media ${media.md} {
+        width: auto;
+        height: var(--full-screen-h);
+        margin: 0;
+        flex-direction: row;
+    }
+`;
+
+const ImageContainer = styled.div`
+    width: 250px;
+    height: auto;
+
+    @media ${media.md} {
+        width: 450px;
+    }
+`
+
+const ProductInfo = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media ${media.md} {
+        align-items: flex-start;
+        margin-left: calc(2 * var(--content-spacing));
+    }
+`
+
+const TextBlock = styled.div`
+    margin: var(--basic-spacing) 0;
 `;
 
 export default function Product({ product }) {
@@ -33,28 +68,36 @@ export default function Product({ product }) {
         item,
         price: price.base, // add only price value
         sku: skus[0].sku,
-        image: images[0] // 1st image obg: alt, url (will remove when order throwed)
+        image: images[1] // 1st image obg: alt, url (will remove when order throwed)
     };
 
     return (
         <Layout>
             <ProductContainer>
-                <Image
-                    alt={images[0].alt}
-                    src={images[0].url}
-                    layout='fixed'
-                    width={300}
-                    height={300}
-                />
-                <h1>{item}</h1>
-                <p>{price.base}</p>
-                {features.map((_feature) => (
-                    <p key={features.indexOf(_feature)}>{_feature}</p>
-                ))}
-                <p>QTY: {skus[0].qtyInStock}</p>
-                <button onClick={() => dispatch(addToCart(newCartItem, cart))}>
-                    В корзину
-                </button>
+                <ImageContainer>
+                    <Image
+                        alt={images[1].alt}
+                        src={images[1].url}
+                        layout='intrinsic'
+                        width={1080}
+                        height={1080}
+                    />
+                </ImageContainer>
+                <ProductInfo>
+                    <TextBlock>
+                        <H1>{item.toUpperCase()}</H1>
+                        <TextItem>{price.base}</TextItem>
+                    </TextBlock>
+                    <TextBlock>
+                        {features.map((_feature) => (
+                            <TextItem key={features.indexOf(_feature)}>{_feature}</TextItem>
+                        ))}
+                    </TextBlock>
+                    <TextItem>Наличие: {skus[0].qtyInStock}</TextItem>
+                    <StyledButton onClick={() => dispatch(addToCart(newCartItem, cart))}>
+                        В корзину
+                    </StyledButton>
+                </ProductInfo>
             </ProductContainer>
         </Layout>
     );

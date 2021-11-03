@@ -3,7 +3,12 @@ import { useRouter } from 'next/router';
 import { request } from 'graphql-request';
 import styled from 'styled-components';
 
+import { media } from '@/styles/media';
+import { PageH1, TextBlock } from '@/components/atoms/text';
+import { InputForm } from '@/components/atoms/forms';
+import { StyledButton } from '@/components/atoms/buttons';
 import Layout from '@/components/templates/layout';
+
 import { CartContext } from '@/contexts/cart/context';
 import { actions, generateCompleteState } from '@/contexts/cart/actions';
 import { CREATE_ORDER } from '@/apollo/client/mutations';
@@ -13,12 +18,25 @@ import { useForm } from '@/hooks/useForm';
 const OrderContainer = styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+
+    @media ${media.md} {
+        width: auto;
+        height: var(--full-screen-h);
+        margin: 0;
+    }
 `;
 
 const StyledForm = styled.form`
+    width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+
+    @media ${media.md} {
+        width: 30%;
+    }
 `;
 
 export default function Preorder() {
@@ -116,38 +134,37 @@ export default function Preorder() {
     return (
         <Layout>
             <OrderContainer>
-                <h1>Предзаказ</h1>
+                <PageH1>Предзаказ</PageH1>
                 <StyledForm onSubmit={handleSubmit}>
-                    <h2>Доставка</h2>
-                    <input
+                    <InputForm
                         placeholder='Имя'
                         value={firstName || ''}
                         onChange={handleChange('firstName')}
                         required
                     />
                     {errors.firstName && <p>{errors.firstName}</p>}
-                    <input
+                    <InputForm
                         placeholder='Фамилия'
                         value={lastName || ''}
                         onChange={handleChange('lastName')}
                         required
                     />
                     {errors.lastName && <p>{errors.lastName}</p>}
-                    <input
-                        placeholder='Адрес'
+                    <InputForm
+                        placeholder='Адрес (город, улица, дом)'
                         value={address || ''}
                         onChange={handleChange('address')}
                         required
                     />
                     {errors.address && <p>{errors.address}</p>}
-                    <input
+                    <InputForm
                         placeholder='Индекс'
                         value={postalCode || ''}
                         onChange={handleChange('postalCode')}
                         required
                     />
                     {errors.postalCode && <p>{errors.postalCode}</p>}
-                    <input
+                    <InputForm
                         placeholder='Номер телефона'
                         type='tel'
                         value={phoneNumber || ''}
@@ -155,7 +172,9 @@ export default function Preorder() {
                         required
                     />
                     {errors.phoneNumber && <p>{errors.phoneNumber}</p>}
-                    <button type='submit'>Заказать</button>
+                    <StyledButton type='submit'>
+                        Заказать
+                    </StyledButton>
                 </StyledForm>
             </OrderContainer>
         </Layout>

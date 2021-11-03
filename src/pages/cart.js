@@ -2,8 +2,11 @@ import { useContext } from 'react';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
+import { PageH1, TextItem } from '@/components/atoms/text';
+import { StyledButton } from '@/components/atoms/buttons';
 import { media } from '@/styles/media';
 import Layout from '@/components/templates/layout';
+
 import CartItemCard from '@/components/molecules/cartItemCard';
 import { CartContext } from '@/contexts/cart/context';
 
@@ -20,6 +23,10 @@ const CartContainer = styled.div`
     }
 `;
 
+const CartItemsContainer = styled.div`
+    
+`;
+
 export default function Cart() {
     const router = useRouter(); // for redirecting to order page
     const { state, dispatch } = useContext(CartContext);
@@ -28,11 +35,11 @@ export default function Cart() {
     return (
         <Layout>
             <CartContainer>
-                <h1>Корзина</h1>
-                <div>
+                <PageH1>Корзина</PageH1>
+                <CartItemsContainer>
                     {cart.items.length === 0 ? (
                         // return if cart is empty
-                        <p>Корзина пуста..</p>
+                        <p>Пусто..</p>
                     ) : (
                         cart.items.map((_item) => (
                             // return CartItem card for each item in cart
@@ -44,11 +51,11 @@ export default function Cart() {
                             />
                         ))
                     )}
-                </div>
+                </CartItemsContainer>
                 <p>Общая сумма: {cart.total}</p>
-                <button onClick={() => router.push('/preorder')}>
+                <StyledButton onClick={() => router.push('/preorder')}>
                     Сделать предзаказ
-                </button>
+                </StyledButton>
             </CartContainer>
         </Layout>
     );

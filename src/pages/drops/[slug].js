@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Layout from '@/components/templates/layout';
 import ProductCard from '@/components/molecules/productCard';
+
 // import for direct access to DB (see SSG funcs)
 import dbConnect from '@/lib/dbConnect';
 import ProductModel from '@/db/models/product';

@@ -4,22 +4,28 @@ import styled from 'styled-components';
 import Image from 'next/image';
 
 import { StyledTagA } from '@/components/atoms/links';
+
 import { CartContext } from '@/contexts/cart/context';
 
 const NavContainer = styled.div`
-    width: calc(100% - 2*var(--basic-spacing));
-    height: 44px;
+    width: calc(100% - 2 * var(--basic-spacing));
+    height: 36px;
     position: fixed;
     z-index: 10;
 
+    // place the nav (cart) to the right
     display: flex;
     justify-content: flex-end;
     align-items: center;
 `;
 
 const LogoContainer = styled.div`
+    // center the logo
     position: absolute;
-    left: calc(50% - 22px);
+    top: calc(var(--basic-spacing) * -1);
+    left: calc(
+        50% - 22px
+    ); // root container width half minus half of logo width
 `;
 
 export default function Nav() {
@@ -32,7 +38,7 @@ export default function Nav() {
                     <StyledTagA>
                         <Image
                             alt='Логотип 80 Apparel'
-                            src='/logo.png'
+                            src='/logo_cut.png'
                             layout='fixed'
                             width={44}
                             height={44}
@@ -41,7 +47,12 @@ export default function Nav() {
                 </Link>
             </LogoContainer>
             <Link href='/cart' passHref>
-                <StyledTagA>Cart {state.cart.items.length}</StyledTagA>
+                <StyledTagA>
+                    Корзина{' '}
+                    {state.cart.items.length > 0
+                        ? `(${state.cart.items.length})`
+                        : ''}
+                </StyledTagA>
             </Link>
         </NavContainer>
     );

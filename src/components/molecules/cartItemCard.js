@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 
+import { TextItem } from '@/components/atoms/text';
+import { CartItemButton } from '@/components/atoms/buttons';
+
 import {
     increase,
     decrease,
@@ -11,6 +14,17 @@ const ItemContainer = styled.div`
     width: 100%;
     display: flex;
     flex-direction: row;
+    align-items: center;
+`;
+
+const ImageContainer = styled.div`
+    margin: var(--basic-spacing);
+`;
+
+const OptionsContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin: var(--basic-spacing);
 `;
 
 export default function CartItemCard({ cartItem, dispatch, cart }) {
@@ -18,30 +32,30 @@ export default function CartItemCard({ cartItem, dispatch, cart }) {
 
     return (
         <ItemContainer>
-            <div>
+            <ImageContainer>
                 <Image
                         alt={image.alt || item}
                         src={image.url}
                         layout='fixed'
-                        width={64}
-                        height={64}
+                        width={96}
+                        height={96}
                     />
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-                {item}
-                <div>
-                    {`QTY: ${qtyForSale}`}
-                    <button onClick={() => dispatch(increase(_id, cart))}>+</button>
+            </ImageContainer>
+            <OptionsContainer>
+                <TextItem>{item}</TextItem>
+                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                    <TextItem>{`Кол-во: ${qtyForSale}`}</TextItem>
+                    <CartItemButton onClick={() => dispatch(increase(_id, cart))}>+</CartItemButton>
                     {qtyForSale > 1 && (
-                        <button onClick={() => dispatch(decrease(_id, cart))}>-</button>
+                        <CartItemButton onClick={() => dispatch(decrease(_id, cart))}>-</CartItemButton>
                     )}
                     {qtyForSale === 1 && (
-                        <button onClick={() => dispatch(removeFromCart(_id, cart))}>
+                        <CartItemButton onClick={() => dispatch(removeFromCart(_id, cart))}>
                             x
-                        </button>
+                        </CartItemButton>
                     )}
                 </div>
-            </div>
+            </OptionsContainer>
         </ItemContainer>
     );
 }

@@ -2,6 +2,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import styled from 'styled-components';
 
+import { TextItem } from '@/components/atoms/text';
+import { media } from '@/styles/media';
 import { StyledTagA } from '@/components/atoms/links';
 
 const CardContainer = styled.div`
@@ -9,12 +11,19 @@ const CardContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: var(--basic-spacing);
 
     cursor: pointer;
 `;
 
 const ImageContainer = styled.div`
     margin: var(--content-spacing) var(--basic-spacing);
+    width: 250px;
+    height: auto;
+
+    @media ${media.md} {
+        width: 450px;
+    }
 `;
 
 export default function ProductCard({ product }) {
@@ -28,13 +37,13 @@ export default function ProductCard({ product }) {
                         <Image
                             alt={images[1].alt}
                             src={images[1].url}
-                            layout='fixed'
-                            width={250}
-                            height={250}
+                            layout='intrinsic'
+                            width={1080}
+                            height={1080}
                         />
                     </ImageContainer>
-                    <span>{item}</span>
-                    <span>{price.base}</span>
+                    <TextItem>{item}</TextItem>
+                    <TextItem>{price.base}</TextItem>
                 </CardContainer>
             </StyledTagA>
         </Link>
