@@ -35,7 +35,9 @@
   - [ ] in cart (inc qty, empty cart);
   - [ ] when order is creating (check qty for items);
 - [ ] cart icon?;
-- [ ] product addToCart (several clicks);
+- [ ] product addToCart (several clicks, indicate clicked);
+- [ ] product page info!;
+- [ ] add currency to prices + price format;
 - [ ] home style;
 - [ ] logo!!! + brand name;
 - [ ] SEO + PWA;
