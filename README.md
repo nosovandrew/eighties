@@ -1,6 +1,6 @@
 # 80 📦
 
-### In progress:
+### FUNCTIONALITY In progress (global scope):
 
 - [x] GraphQL supporting;
 - [ ] GraphQL ADVANCED supporting:
@@ -14,15 +14,28 @@
   - [x] check if user changed localStorage values (for example, reduce price) MAKED: checking before order is throwing to db;
 - [ ] order page functionality;
   - [x] simple order/preorder functionality (without payment);
+  - [ ] custom orderNumber instead of MongoDB _id;
   - [ ] order with payment;
 - [ ] payment functionality;
 - [ ] *optional* create and store user token + carts, orders, payments linked to it in db;
 - [ ] Simple DESIGN:
   - [ ] brand style (logo, colors);
-  - [ ] main;
-  - [ ] drop;
-  - [ ] product;
-  - [ ] cart;
-  - [ ] order?;
+  - [ ] home;
+  - [x] drop;
+  - [x] product;
+  - [x] cart;
+  - [x] order (preorder, successpreorder pages);
   - [ ] payment?;
   - [ ] information pages (contacts, delivery, etc).
+
+### MVP tasks:
+- [ ] checking:
+  - [ ] forms (validation);
+  - [ ] if product "out of stock";
+  - [ ] in cart (inc qty, empty cart);
+  - [ ] when order is creating (check qty for items);
+- [ ] cart icon?;
+- [ ] product addToCart (several clicks);
+- [ ] home style;
+- [ ] logo!!! + brand name;
+- [ ] SEO + PWA;
