@@ -68,7 +68,13 @@ export const PRODUCTS_BY_LIST_OF_IDS = gql`
 export const ORDER_BY_ID = gql`
     query GetOrderByItsId($OrderId: ObjectId!) {
         orderById(id: $OrderId) {
+            _id
             total
+            items {
+                item
+                price
+                qtyForSale
+            }
         }
     }
 `;
