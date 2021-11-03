@@ -1,9 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
 
+import { media } from './media';
+
 const GlobalStyle = createGlobalStyle`
     :root {
         /* Colors */
         --color-primary: #ffffff;
+        --color-secondary: #000; // for elements (not text)
         --text-primary: #000;
         /* Spacing */
         --basic-spacing: 8px;
@@ -12,10 +15,12 @@ const GlobalStyle = createGlobalStyle`
         /* Font */
         --font-sans: 'Rubik', 'Roboto', -apple-system, system-ui, BlinkMacSystemFont, 'Helvetica Neue',
         'Helvetica', sans-serif;
-        --font-weight: 500;
-        --font-size: 18px;
+        --basic-font-weight: 500; // 500 for Rubik
+        --basic-font-size: 16px; // 16 for Rubik
+    }
 
-
+    @media ${media.md} {
+        --basic-font-size: 18px;
     }
 
     [data-theme='dark'] {
@@ -53,8 +58,8 @@ const GlobalStyle = createGlobalStyle`
         position: relative;
         min-height: 100%;
         margin: 0;
-        font-size: var(---font-size);
-        font-weight: var(---font-weight);
+        font-size: var(--basic-font-size);
+        font-weight: var(--basic-font-weight);
     }
 
     a {
