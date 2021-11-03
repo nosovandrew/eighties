@@ -5,9 +5,13 @@ import { media } from './media';
 const GlobalStyle = createGlobalStyle`
     :root {
         /* Colors */
-        --color-primary: #ffffff;
+        --color-primary: #fff;
         --color-secondary: #000; // for elements (not text)
+        --color-gray: #7B7B7B;
+
         --text-primary: #000;
+        --text-secondary: #fff;
+        --text-gray: #7B7B7B;
         /* Spacing */
         --basic-spacing: 8px;
         --content-spacing: 64px;
@@ -20,7 +24,9 @@ const GlobalStyle = createGlobalStyle`
     }
 
     @media ${media.md} {
-        --basic-font-size: 18px;
+        :root {
+            --basic-font-size: 18px;
+        }
     }
 
     [data-theme='dark'] {
