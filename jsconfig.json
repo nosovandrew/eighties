@@ -10,6 +10,7 @@
             "@/apollo/*": ["src/apollo/*"],
             "@/contexts/*": ["src/contexts/*"],
             "@/hooks/*": ["src/hooks/*"],
+            "@/utils/*": ["src/utils/*"],
         }
     }
 }
