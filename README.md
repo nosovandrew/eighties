@@ -36,8 +36,8 @@
   - [ ] when order is creating (check qty for items);
 - [ ] cart icon?;
 - [ ] product addToCart (several clicks, indicate clicked);
-- [ ] product page info!;
-- [ ] add currency to prices + price format;
+- [x] product page info! (preorder moved to QTY);
+- [x] add currency to prices + price format;
 - [ ] home style;
 - [ ] logo!!! + brand name;
 - [ ] new order notification;
