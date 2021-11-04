@@ -6,6 +6,8 @@ import { TextItem } from '@/components/atoms/text';
 import { media } from '@/styles/media';
 import { StyledTagA } from '@/components/atoms/links';
 
+import { formatPrice } from '@/utils/formats';
+
 const CardContainer = styled.div`
     width: fit-content;
     display: flex;
@@ -43,7 +45,7 @@ export default function ProductCard({ product }) {
                         />
                     </ImageContainer>
                     <TextItem>{item}</TextItem>
-                    <TextItem>{price.base}</TextItem>
+                    <TextItem>{formatPrice(price.base)}</TextItem>
                 </CardContainer>
             </StyledTagA>
         </Link>

@@ -8,6 +8,7 @@ import { StyledButton } from '@/components/atoms/buttons';
 import Layout from '@/components/templates/layout';
 import { media } from '@/styles/media';
 
+import { formatPrice } from '@/utils/formats';
 import { CartContext } from '@/contexts/cart/context';
 import { addToCart } from '@/contexts/cart/actions';
 // import for direct access to DB (see SSG funcs)
@@ -86,7 +87,7 @@ export default function Product({ product }) {
                 <ProductInfo>
                     <TextBlock>
                         <H1>{item.toUpperCase()}</H1>
-                        <TextItem>{price.base}</TextItem>
+                        <TextItem>{formatPrice(price.base)}</TextItem>
                     </TextBlock>
                     <TextBlock>
                         {features.map((_feature) => (

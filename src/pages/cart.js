@@ -7,6 +7,7 @@ import { StyledButton } from '@/components/atoms/buttons';
 import { media } from '@/styles/media';
 import Layout from '@/components/templates/layout';
 
+import { formatPrice } from '@/utils/formats';
 import CartItemCard from '@/components/molecules/cartItemCard';
 import { CartContext } from '@/contexts/cart/context';
 
@@ -52,7 +53,7 @@ export default function Cart() {
                         ))
                     )}
                 </CartItemsContainer>
-                <p>Общая сумма: {cart.total}</p>
+                <p>Общая сумма: {formatPrice(cart.total)}</p>
                 <StyledButton onClick={() => router.push('/preorder')}>
                     Сделать предзаказ
                 </StyledButton>

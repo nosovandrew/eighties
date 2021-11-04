@@ -9,6 +9,7 @@ import { media } from '@/styles/media';
 import { H1, TextItem } from '@/components/atoms/text';
 import { StyledTagA } from '@/components/atoms/links';
 
+import { formatPrice } from '@/utils/formats';
 import { ORDER_BY_ID } from '@/apollo/client/queries';
 
 const SuccessContainer = styled.div`
@@ -82,12 +83,12 @@ export default function Success() {
                     <ItemContainer key={items.indexOf(_item)}>
                         <TextItem>{_item.item.toUpperCase()}</TextItem>
                         <TextItem>Размер: ONESIZE</TextItem> {/* !!! размер пока не реализован в заказе */}
-                        <TextItem>Цена: {_item.price}</TextItem>
+                        <TextItem>Цена: {formatPrice(_item.price)}</TextItem>
                         <TextItem>Кол-во: {_item.qtyForSale}</TextItem>
                     </ItemContainer>
                 ))}
             </ItemsContainer>
-            <TextItem>Общая сумма: {total}</TextItem>
+            <TextItem>Общая сумма: {formatPrice(total)}</TextItem>
         </SuccessContainer>
     );
 }
