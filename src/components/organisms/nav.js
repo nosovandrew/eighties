@@ -9,7 +9,7 @@ import { CartContext } from '@/contexts/cart/context';
 
 const NavContainer = styled.div`
     width: calc(100% - 2 * var(--basic-spacing));
-    height: 36px;
+    height: 44px; // fit logo heifht
     position: fixed;
     z-index: 10;
 
@@ -22,7 +22,7 @@ const NavContainer = styled.div`
 const LogoContainer = styled.div`
     // center the logo
     position: absolute;
-    top: calc(var(--basic-spacing) * -1);
+    top: 1px; // fix verical place in nav
     left: calc(
         50% - 22px
     ); // root container width half minus half of logo width
@@ -38,7 +38,7 @@ export default function Nav() {
                     <StyledTagA>
                         <Image
                             alt='Логотип 80 Apparel'
-                            src='/logo_cut.png'
+                            src='/logo.png'
                             layout='fixed'
                             width={44}
                             height={44}
