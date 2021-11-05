@@ -118,6 +118,15 @@ export default function Preorder() {
                     currency: checkedCart.currency,
                 },
             };
+            // send order to Telegram CRM Bot
+            await fetch(process.env.CRM_BOT, {
+                method: 'POST',
+                mode: 'cors',
+                body: JSON.stringify(variables.input),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
             // create order in DB
             const data = await request(
                 process.env.API_ENDPOINT,
@@ -172,9 +181,7 @@ export default function Preorder() {
                         required
                     />
                     {errors.phoneNumber && <p>{errors.phoneNumber}</p>}
-                    <StyledButton type='submit'>
-                        Заказать
-                    </StyledButton>
+                    <StyledButton type='submit'>Заказать</StyledButton>
                 </StyledForm>
             </OrderContainer>
         </Layout>
