@@ -40,5 +40,5 @@
 - [x] add currency to prices + price format;
 - [ ] home style;
 - [ ] logo!!! + brand name;
-- [ ] new order notification;
+- [x] new order notification;
 - [ ] SEO + PWA;
