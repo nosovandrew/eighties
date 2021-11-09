@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useRouter } from 'next/router';
 import { request } from 'graphql-request';
 import styled from 'styled-components';
@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { media } from '@/styles/media';
 import { PageH1, TextBlock } from '@/components/atoms/text';
 import { InputForm } from '@/components/atoms/forms';
-import { StyledButton } from '@/components/atoms/buttons';
+import StyledButton from '@/components/atoms/buttons';
 import Layout from '@/components/templates/layout';
 
 import { CartContext } from '@/contexts/cart/context';
@@ -43,6 +43,7 @@ export default function Preorder() {
     const router = useRouter(); // for redirecting to success page
     const { state, dispatch } = useContext(CartContext);
     const { cart } = state; // get cart from state
+    const [loading, setLoading] = useState(false); // createOrder button loading indicator
     // define form with custom hook
     const {
         handleSubmit,
@@ -101,6 +102,7 @@ export default function Preorder() {
     };
     // handle click on order btn
     const placeOrderHandler = async () => {
+        setLoading(true);
         try {
             const { payload: checkedCart } = await checkCart(); // check cart for malicious changes, then get new updated cart obg
             // input for CREATE_ORDER gql mutation
@@ -135,7 +137,9 @@ export default function Preorder() {
             );
             dispatch({ type: actions.CLEAR_CART }); // refresh cart
             router.push(`/successpreorder?id=${data.createOrder.recordId}`); // redirect to success page
+            setLoading(false);
         } catch (err) {
+            setLoading(false);
             console.error(err);
         }
     };
@@ -181,7 +185,7 @@ export default function Preorder() {
                         required
                     />
                     {errors.phoneNumber && <p>{errors.phoneNumber}</p>}
-                    <StyledButton type='submit'>Заказать</StyledButton>
+                    <StyledButton disabled={true} type='submit' loading={loading}>Заказать</StyledButton>
                 </StyledForm>
             </OrderContainer>
         </Layout>
