@@ -26,7 +26,8 @@
   - [x] cart;
   - [x] order (preorder, successpreorder pages);
   - [ ] payment?;
-  - [ ] information pages (contacts, delivery, etc).
+  - [ ] information pages (contacts, delivery, etc);
+  - [ ] ADVANCED styling sys (hsla + vars)
 
 ### MVP tasks:
 - [ ] checking:
@@ -35,7 +36,11 @@
   - [ ] in cart (inc qty, empty cart);
   - [ ] when order is creating (check qty for items);
 - [ ] cart icon?;
-- [ ] product addToCart (several clicks, indicate clicked);
+- [x] loading indicator in making order;
+- [ ] product addToCart:
+  - [x] indicate clicked;
+  - [x] several clicks (do nothing);
+  - [ ] press animation;
 - [x] product page info! (preorder moved to QTY);
 - [x] add currency to prices + price format;
 - [ ] home style;
