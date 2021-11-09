@@ -4,14 +4,18 @@ import { media } from './media';
 
 const GlobalStyle = createGlobalStyle`
     :root {
-        /* Colors */
+        /* Color variables (static) */
+        --base-black: hsla(0, 0%, 0%, 100%); // unused
+        --base-white: hsla(0, 0%, 100%, 100%); // unused
+        --base-gray: hsla(0, 0%, 41%, 100%); // unused
+        /* Theme colors */
         --color-primary: #fff;
-        --color-secondary: #000; // for elements (not text)
-        --color-gray: #7B7B7B;
-
+        --color-secondary: #000;
+        --color-gray: #686868;
+        /* Text color */
         --text-primary: #000;
         --text-secondary: #fff;
-        --text-gray: #7B7B7B;
+        --text-gray: #686868;
         /* Spacing */
         --basic-spacing: 8px;
         --content-spacing: 64px;
