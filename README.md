@@ -35,7 +35,7 @@
   - [ ] if product "out of stock";
   - [ ] in cart (inc qty, empty cart);
   - [ ] when order is creating (check qty for items);
-- [ ] cart icon?;
+- [x] cart icon (not using);
 - [x] loading indicator in making order;
 - [ ] product addToCart:
   - [x] indicate clicked;
