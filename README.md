@@ -33,7 +33,8 @@
 - [ ] checking:
   - [ ] forms (validation);
   - [ ] if product "out of stock";
-  - [ ] in cart (inc qty, empty cart);
+  - [ ] inc cart;
+  - [x] empty cart;
   - [ ] when order is creating (check qty for items);
 - [x] cart icon (not using);
 - [x] loading indicator in making order;
