@@ -115,7 +115,8 @@ export default function Product({ product }) {
                             </TextItem>
                         ))}
                     </TextBlock>
-                    <TextItem>Наличие: {skus[0].qtyInStock}</TextItem>
+                    {/* <TextItem>Наличие: {skus[0].qtyInStock}</TextItem> */}
+                    <TextItem>Предзаказ</TextItem>
                     <StyledButton onClick={() => addItemToCart()}>
                         {itemAdded ? 'Добавлен' : 'В корзину'}
                     </StyledButton>
