@@ -1,24 +1,43 @@
+import { delay } from 'lodash';
 import styled from 'styled-components';
 
-// loading dots
-export const LoadingDots = styled.span`
-    &::after {
-        display: inline-block;
-        animation: dot-appearance 1s infinite;
-        content: '.';
-        font-size: inherit;
-        font-family: inherit;
-        text-align: left;
-    }
-    @keyframes dot-appearance {
+const LoadingWrapper = styled.div`
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+`;
+
+const Dot = styled.div.attrs((props) => ({
+    delay: props.delay,
+}))`
+    background-color: var(--text-primary);
+    border-radius: 50%;
+    width: 0.5em;
+    height: 0.5em;
+    margin: 0 0.25em;
+    animation: bounce-animation 1s linear infinite;
+    animation-delay: ${props => props.delay};
+
+    @keyframes bounce-animation {
         0% {
-            content: '.';
+            opacity: 0;
         }
-        33% {
-            content: '..';
+
+        50% {
+            opacity: 1;
         }
-        66% {
-            content: '...';
+
+        100% {
+            opacity: 0;
         }
     }
 `;
+
+// loading dots
+export const LoadingDots = () => (
+    <LoadingWrapper>
+        <Dot delay='0s' />
+        <Dot delay='0.1s' />
+        <Dot delay='0.2s' />
+    </LoadingWrapper>
+);
