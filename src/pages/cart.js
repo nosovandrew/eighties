@@ -24,9 +24,7 @@ const CartContainer = styled.div`
     }
 `;
 
-const CartItemsContainer = styled.div`
-    
-`;
+const CartItemsContainer = styled.div``;
 
 export default function Cart() {
     const router = useRouter(); // for redirecting to order page
@@ -54,9 +52,12 @@ export default function Cart() {
                     )}
                 </CartItemsContainer>
                 <p>Общая сумма: {formatPrice(cart.total)}</p>
-                <StyledButton onClick={() => router.push('/preorder')}>
-                    Сделать предзаказ
-                </StyledButton>
+                {/* show btn if cart isn't empty */}
+                {cart.items.length != 0 && (
+                    <StyledButton onClick={() => router.push('/preorder')}>
+                        Сделать предзаказ
+                    </StyledButton>
+                )}
             </CartContainer>
         </Layout>
     );
