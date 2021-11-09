@@ -36,7 +36,7 @@ export const decrease = (productId, cart) => {
 };
 
 // add new product to cart (or increase qtyForSale of existed product)
-export const addToCart = (product, cart) => {
+export const addItem = (product, cart) => {
     // args: product (new product for adding), cart (existing cart in local state)
     const { items } = cart; // get specific field from cart obj
     // check whether product already exist in cart
@@ -52,7 +52,7 @@ export const addToCart = (product, cart) => {
 };
 
 // remove product from cart
-export const removeFromCart = (productId, cart) => {
+export const removeItem = (productId, cart) => {
     // args: productId (id of deleting product), cart (existing cart in local state)
     const { items } = cart; // get specific field from cart obj
     const updatedItems = items.filter((item) => item._id !== productId); // remove product from cart items

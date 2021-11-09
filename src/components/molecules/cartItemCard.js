@@ -7,7 +7,7 @@ import { CartItemButton } from '@/components/atoms/buttons';
 import {
     increase,
     decrease,
-    removeFromCart,
+    removeItem,
 } from '@/contexts/cart/actions';
 
 const ItemContainer = styled.div`
@@ -50,7 +50,7 @@ export default function CartItemCard({ cartItem, dispatch, cart }) {
                         <CartItemButton onClick={() => dispatch(decrease(_id, cart))}>-</CartItemButton>
                     )}
                     {qtyForSale === 1 && (
-                        <CartItemButton onClick={() => dispatch(removeFromCart(_id, cart))}>
+                        <CartItemButton onClick={() => dispatch(removeItem(_id, cart))}>
                             x
                         </CartItemButton>
                     )}

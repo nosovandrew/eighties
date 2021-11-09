@@ -1,16 +1,16 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import styled from 'styled-components';
 
 import { H1, TextItem } from '@/components/atoms/text';
-import { StyledButton } from '@/components/atoms/buttons';
+import StyledButton from '@/components/atoms/buttons';
 import Layout from '@/components/templates/layout';
 import { media } from '@/styles/media';
 
 import { formatPrice } from '@/utils/formats';
 import { CartContext } from '@/contexts/cart/context';
-import { addToCart } from '@/contexts/cart/actions';
+import { addItem } from '@/contexts/cart/actions';
 // import for direct access to DB (see SSG funcs)
 import dbConnect from '@/lib/dbConnect';
 import ProductModel from '@/db/models/product';
@@ -36,7 +36,7 @@ const ImageContainer = styled.div`
     @media ${media.md} {
         width: 450px;
     }
-`
+`;
 
 const ProductInfo = styled.div`
     display: flex;
@@ -47,7 +47,7 @@ const ProductInfo = styled.div`
         align-items: flex-start;
         margin-left: calc(2 * var(--content-spacing));
     }
-`
+`;
 
 const TextBlock = styled.div`
     margin: var(--basic-spacing) 0;
@@ -57,7 +57,18 @@ export default function Product({ product }) {
     const router = useRouter();
     const { state, dispatch } = useContext(CartContext); // get global cart state
     const { cart } = state; // get only cart from state
+    const [itemAdded, setItemAdded] = useState(false); // current item is added to cart indicator
+    // const [loading, setLoading] = useState(false); // addToCart button loading indicator
     // const [tab, setTab] = useState(0); // product images carousel (number of image)
+    // chaecking if item is added to cart (first page load + when cart have changed)
+    useEffect(() => {
+        // if cart contains current product -> set true
+        if (cart.items.some((cartItem) => cartItem._id === product._id)) {
+            setItemAdded(true);
+        }
+        // disable warning cause product never be changed
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [cart]);
     // show `loader` if page isn't pre-rendered
     if (router.isFallback) {
         return <div>Loading...</div>;
@@ -69,9 +80,17 @@ export default function Product({ product }) {
         item,
         price: price.base, // add only price value
         sku: skus[0].sku,
-        image: images[1] // 1st image obg: alt, url (will remove when order throwed)
+        image: images[1], // 1st image obg: alt, url (will remove when order throwed)
     };
 
+    // hadle addToCart button click
+    const addItemToCart = () => {
+        try {
+            if (!itemAdded) dispatch(addItem(newCartItem, cart));
+        } catch (err) {
+            console.log(err);
+        }
+    };
     return (
         <Layout>
             <ProductContainer>
@@ -91,12 +110,14 @@ export default function Product({ product }) {
                     </TextBlock>
                     <TextBlock>
                         {features.map((_feature) => (
-                            <TextItem key={features.indexOf(_feature)}>{_feature}</TextItem>
+                            <TextItem key={features.indexOf(_feature)}>
+                                {_feature}
+                            </TextItem>
                         ))}
                     </TextBlock>
                     <TextItem>Наличие: {skus[0].qtyInStock}</TextItem>
-                    <StyledButton onClick={() => dispatch(addToCart(newCartItem, cart))}>
-                        В корзину
+                    <StyledButton onClick={() => addItemToCart()}>
+                        {itemAdded ? 'Добавлен' : 'В корзину'}
                     </StyledButton>
                 </ProductInfo>
             </ProductContainer>
