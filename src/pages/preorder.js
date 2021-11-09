@@ -185,7 +185,7 @@ export default function Preorder() {
                         required
                     />
                     {errors.phoneNumber && <p>{errors.phoneNumber}</p>}
-                    <StyledButton disabled={true} type='submit' loading={loading}>Заказать</StyledButton>
+                    <StyledButton type='submit' loading={loading}>Заказать</StyledButton>
                 </StyledForm>
             </OrderContainer>
         </Layout>
