@@ -31,6 +31,7 @@
 
 ### MVP tasks:
 - [ ] checking:
+  - [ ] CONTEXT API error/warn state;
   - [ ] forms (validation);
   - [ ] if product "out of stock";
   - [ ] inc cart;
