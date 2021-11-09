@@ -68,7 +68,7 @@ export default function Product({ product }) {
         }
         // disable warning cause product never be changed
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [cart]);
+    }, [cart.items]);
     // show `loader` if page isn't pre-rendered
     if (router.isFallback) {
         return <div>Loading...</div>;
