@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
 import { PageH1, TextItem } from '@/components/atoms/text';
-import { StyledButton } from '@/components/atoms/buttons';
+import StyledButton from '@/components/atoms/buttons';
 import { media } from '@/styles/media';
 import Layout from '@/components/templates/layout';
 
