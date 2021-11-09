@@ -33,6 +33,7 @@ StyledButton.propTypes = {
 const Default = styled.button`
     /* width: fit-content; */
     min-width: 160px;
+    min-height: 42px;
     margin: var(--basic-spacing) 0;
     padding: 8px 16px;
     /* border-style: solid;
@@ -64,6 +65,7 @@ const Default = styled.button`
 export const CartItemButton = styled(StyledButton)`
     && {
         min-width: fit-content;
+        min-height: fit-content;
         margin-left: var(--basic-spacing);
         padding: 2px 8px;
         /* border: 2px solid var(--color-secondary); */
