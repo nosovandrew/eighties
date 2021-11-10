@@ -29,14 +29,10 @@
   - [ ] information pages (contacts, delivery, etc);
   - [ ] ADVANCED styling sys (hsla + vars)
 
-### MVP tasks:
+### 1st version MVP tasks:
 - [ ] checking:
-  - [ ] CONTEXT API error/warn state;
   - [ ] forms (validation);
-  - [ ] if product "out of stock";
-  - [ ] inc cart;
   - [x] empty cart;
-  - [ ] when order is creating (check qty for items);
 - [x] cart icon (not using);
 - [x] loading indicator in making order;
 - [ ] product addToCart:
@@ -49,3 +45,10 @@
 - [ ] logo!!! + brand name;
 - [x] new order notification;
 - [ ] SEO + PWA;
+
+### 2nd version of MVP tasks:
+- [ ] CONTEXT API error/warn state;
+- [ ] handle qty:
+  - [ ] if product "out of stock";
+  - [ ] inc cart;
+  - [ ] when order is creating (check qty for items);

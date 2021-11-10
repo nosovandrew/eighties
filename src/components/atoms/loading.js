@@ -16,7 +16,7 @@ const Dot = styled.div.attrs((props) => ({
     height: 0.5em;
     margin: 0 0.25em;
     animation: bounce-animation 1s linear infinite;
-    animation-delay: ${props => props.delay};
+    animation-delay: ${(props) => props.delay};
 
     @keyframes bounce-animation {
         0% {

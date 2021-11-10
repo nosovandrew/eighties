@@ -116,6 +116,7 @@ export default function Product({ product }) {
                         ))}
                     </TextBlock>
                     {/* <TextItem>Наличие: {skus[0].qtyInStock}</TextItem> */}
+                    {/* make condition: if qtyInStock -> one logic, else other logic (preorder) */}
                     <TextItem>Предзаказ</TextItem>
                     <StyledButton onClick={() => addItemToCart()}>
                         {itemAdded ? 'Добавлен' : 'В корзину'}

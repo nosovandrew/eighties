@@ -9,6 +9,8 @@ const StyledButton = ({
     children,
     disabled = false,
     loading = false,
+    // successed = false,
+    // failed = false,
     ...rest
 }) => {
     return (
