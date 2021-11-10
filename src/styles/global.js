@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
         --text-gray: #686868;
         /* Spacing */
         --basic-spacing: 8px;
-        --content-spacing: 64px;
+        --content-spacing: 52px; // headerHeight + basicSpacing
         --full-screen-h: calc(100vh - 2*var(--basic-spacing)); // minus global padding (top+bottom)
         /* Font */
         --font-sans: 'Rubik', 'Roboto', -apple-system, system-ui, BlinkMacSystemFont, 'Helvetica Neue',
