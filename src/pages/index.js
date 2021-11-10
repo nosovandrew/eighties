@@ -19,17 +19,28 @@ const HomeContainer = styled.div`
     }
 `;
 
+const ImageContainer = styled.div`
+    width: 100%;
+    height: auto;
+
+    @media ${media.md} {
+        width: 600px;
+    }
+`;
+
 const Home = () => {
     return (
         <Layout>
             <HomeContainer>
-                <Image
-                    alt='Ретро фото на главной странице'
-                    src='/assets/kodak_brown.jpg'
-                    layout='fixed'
-                    width={200}
-                    height={200}
-                />
+                <ImageContainer>
+                    <Image
+                        alt='Ретро фото на главной странице'
+                        src='/assets/kodak_brown.jpg'
+                        layout='intrinsic'
+                        width={1080}
+                        height={1080}
+                    />
+                </ImageContainer>
                 <Link href='/drops/1' passHref>
                     <StyledTagA>Выпуск 1</StyledTagA>
                 </Link>
