@@ -119,7 +119,7 @@ export default function Product({ product }) {
                     {/* make condition: if qtyInStock -> one logic, else other logic (preorder) */}
                     <TextItem>Предзаказ</TextItem>
                     <StyledButton onClick={() => addItemToCart()}>
-                        {itemAdded ? 'Добавлен' : 'В корзину'}
+                        {itemAdded ? 'Добавлено' : 'В корзину'}
                     </StyledButton>
                 </ProductInfo>
             </ProductContainer>
