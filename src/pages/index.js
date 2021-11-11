@@ -70,11 +70,11 @@ const Home = () => {
                         <StyledTagA>ДОСТАВКА</StyledTagA>
                     </Link>
                     <StyledTagA
-                        href='https://t.me/eightiesinprogress'
+                        href='https://t.me/andrewnosov'
                         target='_blank'
                         rel='noopener noreferrer'
                     >
-                        ТЕЛЕГРАМ
+                        СВЯЗЬ
                     </StyledTagA>
                 </LinksContainer>
             </HomeContainer>
