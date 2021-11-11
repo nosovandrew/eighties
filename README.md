@@ -26,11 +26,11 @@
   - [x] cart;
   - [x] order (preorder, successpreorder pages);
   - [ ] payment?;
-  - [ ] information pages (contacts, delivery, etc);
+  - [x] information pages (contacts, delivery, etc);
   - [ ] ADVANCED styling sys (hsla + vars)
 
 ### 1st version MVP tasks:
-- [ ] checking:
+- [ ] logic:
   - [ ] forms (validation);
   - [x] empty cart;
 - [x] cart icon (not using);
@@ -41,7 +41,8 @@
   - [ ] press animation;
 - [x] product page info! (preorder moved to QTY);
 - [x] add currency to prices + price format;
-- [ ] home style;
+- [x] home style;
+- [x] additional pages;
 - [ ] logo!!! + brand name;
 - [x] new order notification;
 - [ ] SEO + PWA;
