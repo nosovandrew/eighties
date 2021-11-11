@@ -21,10 +21,17 @@ const ImageContainer = styled.div`
     margin: var(--basic-spacing);
 `;
 
-const OptionsContainer = styled.div`
+const InfoContainer = styled.div`
     display: flex;
     flex-direction: column;
     margin: var(--basic-spacing);
+    align-items: flex-start;
+`;
+
+const QtyContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 `;
 
 export default function CartItemCard({ cartItem, dispatch, cart }) {
@@ -41,9 +48,9 @@ export default function CartItemCard({ cartItem, dispatch, cart }) {
                         height={96}
                     />
             </ImageContainer>
-            <OptionsContainer>
+            <InfoContainer>
                 <TextItem>{item}</TextItem>
-                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                <QtyContainer>
                     <TextItem>{`Кол-во: ${qtyForSale}`}</TextItem>
                     <CartItemButton onClick={() => dispatch(increase(_id, cart))}>+</CartItemButton>
                     {qtyForSale > 1 && (
@@ -54,8 +61,8 @@ export default function CartItemCard({ cartItem, dispatch, cart }) {
                             x
                         </CartItemButton>
                     )}
-                </div>
-            </OptionsContainer>
+                </QtyContainer>
+            </InfoContainer>
         </ItemContainer>
     );
 }
