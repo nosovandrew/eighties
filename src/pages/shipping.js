@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Image from 'next/image';
+import { NextSeo } from 'next-seo';
 
 import { media } from '@/styles/media';
 import Layout from '@/components/templates/layout';
@@ -31,6 +32,10 @@ const ImageContainer = styled.div`
 export default function ShippingInfo() {
     return (
         <Layout>
+            <NextSeo
+                title='Доставка'
+                description= 'Вся актуальная информация о доставке.'
+            />
             <ShippingContainer>
                 <PageH1>Доставка</PageH1>
                 <TextBlock>

@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
+import { NextSeo } from 'next-seo';
 
 import { PageH1, TextItem } from '@/components/atoms/text';
 import StyledButton from '@/components/atoms/buttons';
@@ -33,6 +34,10 @@ export default function Cart() {
 
     return (
         <Layout>
+            <NextSeo
+                title='Корзина'
+                description='Корзина с вещами, которые клиент собирается добавить в свой заказ. Есть возможность изменить количество, а также удалить из корзины.'
+            />
             <CartContainer>
                 <PageH1>Корзина</PageH1>
                 <CartItemsContainer>

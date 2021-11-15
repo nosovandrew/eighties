@@ -2,6 +2,7 @@ import Layout from '@/components/templates/layout';
 import Link from 'next/link';
 import styled from 'styled-components';
 import Image from 'next/image';
+import { NextSeo } from 'next-seo';
 
 import { StyledTagA } from '@/components/atoms/links';
 import { media } from '@/styles/media';
@@ -45,6 +46,10 @@ const LinksContainer = styled.div`
 const Home = () => {
     return (
         <Layout>
+            <NextSeo
+                title='80 Religion'
+                description='Бренд, приближенный к своим клиентам. Мы хотим создавать вещи совместно с людьми, опираясь на их отзывы и пожелания. Все вещи выпускаются ограниченными сериями (дропами), либо в единичном экземпляре.'
+            />
             <HomeContainer>
                 <Link href='/drops/1' passHref>
                     <StyledTagA>

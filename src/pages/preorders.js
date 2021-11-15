@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { NextSeo } from "next-seo";
 
 import { media } from "@/styles/media";
 import Layout from "@/components/templates/layout";
@@ -20,6 +21,10 @@ const PreordersContainer = styled.div`
 export default function PreorderInfo() {
     return (
         <Layout>
+            <NextSeo
+                title='О предзаказах'
+                description= 'Вся информация о системе предзаказов, по которой работает бренд в настоящее время. Данная система не является постоянной, и может быть заменена на более классическую.'
+            />
             <PreordersContainer>
                 <PageH1>Предзаказы</PageH1>
                 <TextBlock>

@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import styled from 'styled-components';
+import { NextSeo } from 'next-seo';
 
 import { H1, TextItem } from '@/components/atoms/text';
 import StyledButton from '@/components/atoms/buttons';
@@ -49,8 +50,8 @@ const ProductInfo = styled.div`
     }
 `;
 
-const TextBlock = styled.div`
-    margin: var(--basic-spacing) 0;
+const InfoBlock = styled.div`
+    margin: calc(1.5 * var(--basic-spacing)) 0;
 `;
 
 export default function Product({ product }) {
@@ -93,6 +94,10 @@ export default function Product({ product }) {
     };
     return (
         <Layout>
+            <NextSeo
+                title={`${item}`}
+                description= {`Карточка товара "${item}" с изображением, описанием и кнопкой для добавления в корзину.`}
+            />
             <ProductContainer>
                 <ImageContainer>
                     <Image
@@ -104,20 +109,22 @@ export default function Product({ product }) {
                     />
                 </ImageContainer>
                 <ProductInfo>
-                    <TextBlock>
+                    <InfoBlock>
                         <H1>{item.toUpperCase()}</H1>
                         <TextItem>{formatPrice(price.base)}</TextItem>
-                    </TextBlock>
-                    <TextBlock>
+                    </InfoBlock>
+                    <InfoBlock>
                         {features.map((_feature) => (
                             <TextItem key={features.indexOf(_feature)}>
                                 {_feature}
                             </TextItem>
                         ))}
-                    </TextBlock>
+                    </InfoBlock>
                     {/* <TextItem>Наличие: {skus[0].qtyInStock}</TextItem> */}
                     {/* make condition: if qtyInStock -> one logic, else other logic (preorder) */}
-                    <TextItem>Предзаказ</TextItem>
+                    <InfoBlock>
+                        <TextItem>Предзаказ<br />(инф. на главной)</TextItem>
+                    </InfoBlock>    
                     <StyledButton onClick={() => addItemToCart()}>
                         {itemAdded ? 'Добавлено' : 'В корзину'}
                     </StyledButton>

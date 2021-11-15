@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import Link from 'next/link';
 import Image from 'next/image';
+import { NextSeo } from 'next-seo';
 
 import { media } from '@/styles/media';
 import { H1, TextItem } from '@/components/atoms/text';
@@ -63,12 +64,17 @@ export default function Success() {
 
     return (
         <SuccessContainer>
+            <NextSeo 
+                title='Заказ успешно создан!'
+                description='Информация о успешно созданном заказе.'
+                noindex={true}
+                nofollow={true} />
             <LogoContainer>
                 <Link href='/' passHref>
                     <StyledTagA>
                         <Image
                             alt='Логотип 80 Apparel'
-                            src='/logo.png'
+                            src='/site_logo.png'
                             layout='fixed'
                             width={56}
                             height={56}

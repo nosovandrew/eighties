@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
+import { NextSeo } from 'next-seo';
 
 import Layout from '@/components/templates/layout';
 import ProductCard from '@/components/molecules/productCard';
@@ -14,7 +15,7 @@ const CardsContainer = styled.div`
     align-items: center;
 `;
 
-export default function Shop({ products }) {
+export default function Shop({ products, slug }) {
     const router = useRouter();
     // show `loader` if page isn't pre-rendered
     if (router.isFallback) {
@@ -23,6 +24,10 @@ export default function Shop({ products }) {
 
     return (
         <Layout>
+            <NextSeo
+                title={`Выпуск ${slug}`}
+                description= {`Список вещей, которые достпны для заказа в выпуске (дропе) #${slug}.`}
+            />
             <CardsContainer>
                 {products.map((_product) => (
                     // return ProductCard for each product
@@ -74,5 +79,5 @@ export async function getStaticProps({ params }) {
     });
 
     // revalidate set the time (in sec) of re-generate page (it imitate SSR)
-    return { props: { products }, revalidate: 300 };
+    return { props: { products, slug }, revalidate: 300 };
 }
