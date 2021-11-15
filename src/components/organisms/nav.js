@@ -38,7 +38,7 @@ export default function Nav() {
                     <StyledTagA>
                         <Image
                             alt='Логотип 80 Apparel'
-                            src='/logo.png'
+                            src='/site_logo.png'
                             layout='fixed'
                             width={44}
                             height={44}
