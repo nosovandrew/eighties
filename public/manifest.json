@@ -1,0 +1,25 @@
+{
+    "lang": "ru",
+    "dir": "ltr",
+    "name": "80 Religion",
+    "short_name": "80",
+    "description": "Бренд, приближенный к своим клиентам. Мы хотим создавать вещи совместно с людьми, опираясь на их отзывы и пожелания. Все вещи выпускаются ограниченными сериями (дропами), либо в единичном экземпляре.",
+    "display": "standalone",
+    "start_url": "/",
+    "theme_color": "#2B8760",
+    "background_color": "#FFFFFF",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "icons/icon-192.png",
+            "type": "image/png",
+            "purpose": "any maskable",
+            "sizes": "192x192"
+        },
+        {
+            "src": "icons/icon-512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ]
+} 
