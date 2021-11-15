@@ -44,7 +44,7 @@ export default function ProductCard({ product }) {
                             height={1080}
                         />
                     </ImageContainer>
-                    <TextItem>{item}</TextItem>
+                    <TextItem>{item.slice(6).toUpperCase()}</TextItem>
                     <TextItem>{formatPrice(price.base)}</TextItem>
                 </CardContainer>
             </StyledTagA>
