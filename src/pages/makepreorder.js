@@ -2,9 +2,11 @@ import { useContext, useState } from 'react';
 import { useRouter } from 'next/router';
 import { request } from 'graphql-request';
 import styled from 'styled-components';
+import { NextSeo } from 'next-seo';
 
 import { media } from '@/styles/media';
-import { PageH1, TextBlock } from '@/components/atoms/text';
+import { PageH1, TextItem } from '@/components/atoms/text';
+import { ErrorMark } from '@/components/atoms/svgs';
 import { InputForm } from '@/components/atoms/forms';
 import StyledButton from '@/components/atoms/buttons';
 import Layout from '@/components/templates/layout';
@@ -39,6 +41,18 @@ const StyledForm = styled.form`
     }
 `;
 
+const ValidationErrorContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: var(--basic-spacing);
+
+    & > svg {
+        margin-right: var(--basic-spacing);
+    }
+`;
+
 export default function Preorder() {
     const router = useRouter(); // for redirecting to success page
     const { state, dispatch } = useContext(CartContext);
@@ -53,6 +67,12 @@ export default function Preorder() {
     } = useForm({
         validations: {
             // all validation rules (for some keys)
+            phoneNumber: {
+                pattern: {
+                    value: /^\+?[1-9]\d{1,14}$/,
+                    message: 'Некорректный номер телефона',
+                },
+            },
         },
         onSubmit: () => placeOrderHandler(), // logic for submit func
         initialValues: {
@@ -146,6 +166,10 @@ export default function Preorder() {
 
     return (
         <Layout>
+            <NextSeo
+                title='Информация для заказа'
+                description='Страница, на которой клиент оставляет свои данные, необходимые для доставки, а также подтверждает создаваемый им заказ.'
+            />
             <OrderContainer>
                 <PageH1>Предзаказ</PageH1>
                 <StyledForm onSubmit={handleSubmit}>
@@ -155,28 +179,48 @@ export default function Preorder() {
                         onChange={handleChange('firstName')}
                         required
                     />
-                    {errors.firstName && <p>{errors.firstName}</p>}
+                    {errors.firstName && (
+                        <ValidationErrorContainer>
+                            <ErrorMark />
+                            <TextItem>{errors.firstName}</TextItem>
+                        </ValidationErrorContainer>
+                    )}
                     <InputForm
                         placeholder='Фамилия'
                         value={lastName || ''}
                         onChange={handleChange('lastName')}
                         required
                     />
-                    {errors.lastName && <p>{errors.lastName}</p>}
+                    {errors.lastName && (
+                        <ValidationErrorContainer>
+                            <ErrorMark />
+                            <TextItem>{errors.lastName}</TextItem>
+                        </ValidationErrorContainer>
+                    )}
                     <InputForm
                         placeholder='Адрес (город, улица, дом)'
                         value={address || ''}
                         onChange={handleChange('address')}
                         required
                     />
-                    {errors.address && <p>{errors.address}</p>}
+                    {errors.address && (
+                        <ValidationErrorContainer>
+                            <ErrorMark />
+                            <TextItem>{errors.address}</TextItem>
+                        </ValidationErrorContainer>
+                    )}
                     <InputForm
-                        placeholder='Индекс'
+                        placeholder='Почтовый индекс'
                         value={postalCode || ''}
                         onChange={handleChange('postalCode')}
                         required
                     />
-                    {errors.postalCode && <p>{errors.postalCode}</p>}
+                    {errors.postalCode && (
+                        <ValidationErrorContainer>
+                            <ErrorMark />
+                            <TextItem>{errors.postalCode}</TextItem>
+                        </ValidationErrorContainer>
+                    )}
                     <InputForm
                         placeholder='Номер телефона'
                         type='tel'
@@ -184,8 +228,15 @@ export default function Preorder() {
                         onChange={handleChange('phoneNumber')}
                         required
                     />
-                    {errors.phoneNumber && <p>{errors.phoneNumber}</p>}
-                    <StyledButton type='submit' loading={loading}>Заказать</StyledButton>
+                    {errors.phoneNumber && (
+                        <ValidationErrorContainer>
+                            <ErrorMark />
+                            <TextItem>{errors.phoneNumber}</TextItem>
+                        </ValidationErrorContainer>
+                    )}
+                    <StyledButton type='submit' loading={loading}>
+                        Заказать
+                    </StyledButton>
                 </StyledForm>
             </OrderContainer>
         </Layout>
