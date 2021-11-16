@@ -31,24 +31,24 @@
 
 ### 1st version MVP tasks:
 - [ ] logic:
-  - [ ] forms (validation);
+  - [x] forms (PhoneNumber✅);
   - [x] empty cart;
 - [x] cart icon (not using);
 - [x] loading indicator in making order;
 - [ ] product addToCart:
   - [x] indicate clicked;
   - [x] several clicks (do nothing);
-  - [ ] press animation;
+  - [x] press animation;
 - [x] product page info! (preorder moved to QTY);
 - [x] add currency to prices + price format;
 - [x] home style;
 - [x] additional pages;
-- [ ] logo!!! + brand name;
+- [x] logo!!! + brand name;
 - [x] new order notification;
-- [ ] SEO + PWA;
+- [x] SEO + PWA;
 
 ### 2nd version of MVP tasks:
-- [ ] CONTEXT API error/warn state;
+- [ ] CONTEXT API error/warn state OR custom hook for btn;
 - [ ] handle qty:
   - [ ] if product "out of stock";
   - [ ] inc cart;
