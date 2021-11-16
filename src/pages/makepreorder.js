@@ -167,11 +167,11 @@ export default function Preorder() {
     return (
         <Layout>
             <NextSeo
-                title='Информация для заказа'
+                title='Информация для доставки'
                 description='Страница, на которой клиент оставляет свои данные, необходимые для доставки, а также подтверждает создаваемый им заказ.'
             />
             <OrderContainer>
-                <PageH1>Предзаказ</PageH1>
+                <PageH1>Кому и Куда</PageH1>
                 <StyledForm onSubmit={handleSubmit}>
                     <InputForm
                         placeholder='Имя'

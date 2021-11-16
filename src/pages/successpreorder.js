@@ -65,8 +65,8 @@ export default function Success() {
     return (
         <SuccessContainer>
             <NextSeo 
-                title='Заказ успешно создан!'
-                description='Информация о успешно созданном заказе.'
+                title='Заказ создан'
+                description='Информация о успешно созданном заказе. Выдается номер заказа, а также состав и стоимость.'
                 noindex={true}
                 nofollow={true} />
             <LogoContainer>

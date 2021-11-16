@@ -16,6 +16,7 @@ const HomeContainer = styled.div`
         width: auto;
         height: var(--full-screen-h);
         margin: 0;
+        /* padding-top: calc(44px + var(--basic-spacing)); // get rid nav on big screens */
         justify-content: center;
     }
 `;
@@ -47,7 +48,7 @@ const Home = () => {
     return (
         <Layout>
             <NextSeo
-                title='80 Religion'
+                title='80 Limited Apparel'
                 description='Бренд, приближенный к своим клиентам. Мы хотим создавать вещи совместно с людьми, опираясь на их отзывы и пожелания. Все вещи выпускаются ограниченными сериями (дропами), либо в единичном экземпляре.'
             />
             <HomeContainer>
