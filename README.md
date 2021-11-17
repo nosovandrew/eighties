@@ -48,6 +48,7 @@
 - [x] SEO + PWA;
 
 ### 2nd version of MVP tasks:
+- [ ] skeleton for image loading state;
 - [ ] CONTEXT API error/warn state OR custom hook for btn;
 - [ ] handle qty:
   - [ ] if product "out of stock";

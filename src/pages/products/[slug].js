@@ -106,6 +106,9 @@ export default function Product({ product }) {
                         layout='intrinsic'
                         width={1080}
                         height={1080}
+                        // onLoadingComplete={() => {
+                        //     console.log('Image loaded!');
+                        // }}
                     />
                 </ImageContainer>
                 <ProductInfo>
