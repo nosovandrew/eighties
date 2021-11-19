@@ -16,6 +16,7 @@ module.exports = withPlugins(
             API_ENDPOINT: process.env.API_ENDPOINT,
             CRM_BOT: process.env.CRM_BOT,
             VERCEL_ENV: process.env.VERCEL_ENV,
+            HOST: process.env.HOST,
         },
         reactStrictMode: true,
     }
