@@ -24,7 +24,7 @@ const ImageContainer = styled.div`
     height: auto;
 
     @media ${media.md} {
-        width: 450px;
+        width: 400px;
     }
 `;
 
