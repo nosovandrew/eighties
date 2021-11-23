@@ -67,7 +67,7 @@ const Home = () => {
                 </Link>
                 <LinksContainer>
                     <Link href='/drops/1' passHref>
-                        <StyledTagA>ВЫПУСК №1</StyledTagA>
+                        <StyledTagA>КАТАЛОГ</StyledTagA>
                     </Link>
                     <Link href='/preorders' passHref>
                         <StyledTagA>ПРЕДЗАКАЗЫ</StyledTagA>
