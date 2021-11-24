@@ -56,11 +56,11 @@ const Home = () => {
                     <StyledTagA>
                         <ImageContainer>
                             <Image
-                                alt='Ретро фото на главной странице'
-                                src='/assets/kodak_brown.png'
+                                alt='Изображение выпуска №1 на главной странице магазина'
+                                src='/assets/drop1.png'
                                 layout='intrinsic'
-                                width={1080}
-                                height={1080}
+                                width={2160}
+                                height={2160}
                             />
                         </ImageContainer>
                     </StyledTagA>
