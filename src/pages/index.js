@@ -32,7 +32,7 @@ const ImageContainer = styled.div`
 
 const LinksContainer = styled.div`
     display: grid;
-    grid-template-rows: repeat(4, 1fr);
+    /* grid-template-rows: repeat(4, 1fr); */
     grid-template-columns: 1fr;
     justify-items: center;
     gap: calc(4 * var(--basic-spacing));
