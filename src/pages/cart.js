@@ -60,7 +60,7 @@ export default function Cart() {
                 {cart.items.length != 0 && (
                     <>
                         <p>Общая сумма: {formatPrice(cart.total)}</p>
-                        <StyledButton onClick={() => router.push('/makepreorder')}>
+                        <StyledButton onClick={() => router.push('/makeorder')}>
                             Сделать предзаказ
                         </StyledButton>
                     </>

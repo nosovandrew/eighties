@@ -156,7 +156,7 @@ export default function Preorder() {
                 variables
             );
             dispatch({ type: actions.CLEAR_CART }); // refresh cart
-            router.push(`/successpreorder?id=${data.createOrder.recordId}`); // redirect to success page
+            router.push(`/successorder?id=${data.createOrder.recordId}`); // redirect to success page
             setLoading(false);
         } catch (err) {
             setLoading(false);
