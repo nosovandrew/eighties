@@ -1,12 +1,12 @@
 import { useContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
 import styled from 'styled-components';
 import { NextSeo } from 'next-seo';
 
 import { H1, TextItem } from '@/components/atoms/text';
 import StyledButton from '@/components/atoms/buttons';
 import Layout from '@/components/templates/layout';
+import ImageRenderer from '@/components/atoms/ImageRenderer';
 import { media } from '@/styles/media';
 
 import { formatPrice } from '@/utils/formats';
@@ -32,10 +32,11 @@ const ProductContainer = styled.div`
 
 const ImageContainer = styled.div`
     width: 250px;
-    height: auto;
+    height: 250px; // declare height for placeholder (inheritance)
 
     @media ${media.md} {
         width: 450px;
+        height: 450px; // declare height for placeholder (inheritance)
     }
 `;
 
@@ -96,19 +97,16 @@ export default function Product({ product }) {
         <Layout>
             <NextSeo
                 title={`${item}`}
-                description= {`Карточка товара "${item}" с изображением, описанием и кнопкой для добавления в корзину.`}
+                description={`Карточка товара "${item}" с изображением, описанием и кнопкой для добавления в корзину.`}
             />
             <ProductContainer>
                 <ImageContainer>
-                    <Image
+                    <ImageRenderer
                         alt={images[1].alt}
                         src={images[1].url}
                         layout='intrinsic'
                         width={1080}
                         height={1080}
-                        // onLoadingComplete={() => {
-                        //     console.log('Image loaded!');
-                        // }}
                     />
                 </ImageContainer>
                 <ProductInfo>
@@ -126,8 +124,12 @@ export default function Product({ product }) {
                     {/* <TextItem>Наличие: {skus[0].qtyInStock}</TextItem> */}
                     {/* make condition: if qtyInStock -> one logic, else other logic (preorder) */}
                     <InfoBlock>
-                        <TextItem>Предзаказ<br />(инф. на главной)</TextItem>
-                    </InfoBlock>    
+                        <TextItem>
+                            Предзаказ
+                            <br />
+                            (инф. на главной)
+                        </TextItem>
+                    </InfoBlock>
                     <StyledButton onClick={() => addItemToCart()}>
                         {itemAdded ? 'Добавлено' : 'В корзину'}
                     </StyledButton>

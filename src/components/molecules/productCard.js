@@ -1,10 +1,10 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import styled from 'styled-components';
 
 import { TextItem } from '@/components/atoms/text';
 import { media } from '@/styles/media';
 import { StyledTagA } from '@/components/atoms/links';
+import ImageRenderer from '../atoms/ImageRenderer';
 
 import { formatPrice } from '@/utils/formats';
 
@@ -21,10 +21,12 @@ const CardContainer = styled.div`
 const ImageContainer = styled.div`
     margin: var(--content-spacing) var(--basic-spacing);
     width: 250px;
-    height: auto;
+    height: 250px; // declare height for placeholder (inheritance)
+    /* height: auto; */
 
     @media ${media.md} {
         width: 400px;
+        height: 400px; // declare height for placeholder (inheritance)
     }
 `;
 
@@ -36,7 +38,7 @@ export default function ProductCard({ product }) {
             <StyledTagA>
                 <CardContainer>
                     <ImageContainer>
-                        <Image
+                        <ImageRenderer
                             alt={images[1].alt}
                             src={images[1].url}
                             layout='intrinsic'

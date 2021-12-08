@@ -1,14 +1,10 @@
 import styled from 'styled-components';
-import Image from 'next/image';
 
 import { TextItem } from '@/components/atoms/text';
 import { CartItemButton } from '@/components/atoms/buttons';
+import ImageRenderer from '../atoms/ImageRenderer';
 
-import {
-    increase,
-    decrease,
-    removeItem,
-} from '@/contexts/cart/actions';
+import { increase, decrease, removeItem } from '@/contexts/cart/actions';
 
 const ItemContainer = styled.div`
     width: 100%;
@@ -19,6 +15,8 @@ const ItemContainer = styled.div`
 
 const ImageContainer = styled.div`
     margin: var(--basic-spacing);
+    width: 96px;  // declare height for placeholder (inheritance)
+    height: 96px;  // declare height for placeholder (inheritance)
 `;
 
 const InfoContainer = styled.div`
@@ -40,24 +38,34 @@ export default function CartItemCard({ cartItem, dispatch, cart }) {
     return (
         <ItemContainer>
             <ImageContainer>
-                <Image
-                        alt={image.alt || item}
-                        src={image.url}
-                        layout='fixed'
-                        width={96}
-                        height={96}
-                    />
+                <ImageRenderer
+                    alt={image.alt || item}
+                    src={image.url}
+                    layout='fixed'
+                    width={96}
+                    height={96}
+                />
             </ImageContainer>
             <InfoContainer>
                 <TextItem>{item}</TextItem>
                 <QtyContainer>
                     <TextItem>{`Кол-во: ${qtyForSale}`}</TextItem>
-                    <CartItemButton onClick={() => dispatch(increase(_id, cart))}>+</CartItemButton>
+                    <CartItemButton
+                        onClick={() => dispatch(increase(_id, cart))}
+                    >
+                        +
+                    </CartItemButton>
                     {qtyForSale > 1 && (
-                        <CartItemButton onClick={() => dispatch(decrease(_id, cart))}>-</CartItemButton>
+                        <CartItemButton
+                            onClick={() => dispatch(decrease(_id, cart))}
+                        >
+                            -
+                        </CartItemButton>
                     )}
                     {qtyForSale === 1 && (
-                        <CartItemButton onClick={() => dispatch(removeItem(_id, cart))}>
+                        <CartItemButton
+                            onClick={() => dispatch(removeItem(_id, cart))}
+                        >
                             x
                         </CartItemButton>
                     )}
