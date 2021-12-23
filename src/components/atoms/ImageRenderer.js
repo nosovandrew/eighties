@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
+import PropTypes from 'prop-types';
 
 // loading component (skeleton)
 const Placeholder = styled.div`
@@ -29,3 +30,8 @@ const ImageRenderer = ({ src, alt, ...props }) => {
 };
 
 export default ImageRenderer;
+
+ImageRenderer.propTypes = {
+    src: PropTypes.string.isRequired,
+    alt: PropTypes.string.isRequired,
+}
