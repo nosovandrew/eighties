@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { NextSeo } from 'next-seo';
 
-import { PageH1, TextItem } from '@/components/atoms/text';
+import { PageH1 } from '@/components/atoms/text';
 import StyledButton from '@/components/atoms/buttons';
 import { media } from '@/styles/media';
 import Layout from '@/components/templates/layout';
@@ -57,7 +57,7 @@ export default function Cart() {
                     )}
                 </CartItemsContainer>
                 {/* show btn if cart isn't empty */}
-                {cart.items.length != 0 && (
+                {cart.items.length !== 0 && (
                     <>
                         <p>Общая сумма: {formatPrice(cart.total)}</p>
                         <StyledButton onClick={() => router.push('/makeorder')}>
