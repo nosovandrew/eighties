@@ -11,6 +11,8 @@ export const typeDefs = gql`
     extend type Query {
         "Get order by its identifier."
         orderById(id: ObjectId!): Order!
+        "Get all orders in db."
+        orders: [Order!]!
     }
 
     # extend for divide schema on modules (root empty Mutation in schema.js)
@@ -88,6 +90,16 @@ export const typeDefs = gql`
 // graphql resolvers for order entity
 export const resolvers = {
     Query: {
+        // get all orders in db
+        orders: async () => {
+            try {
+                const orders = await Order.find({});
+
+                return orders;
+            } catch (err) {
+                console.error(err);
+            }
+        },
         // get order with specific id
         orderById: async (_parent, args, _context, _info) => {
             try {
