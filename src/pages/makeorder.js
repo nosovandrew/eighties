@@ -141,14 +141,15 @@ export default function Preorder() {
                 },
             };
             // send order to Telegram CRM Bot
-            await fetch(process.env.CRM_BOT, {
+            // temporary disabled
+            /* await fetch(process.env.CRM_BOT, {
                 method: 'POST',
                 mode: 'cors',
                 body: JSON.stringify(variables.input),
                 headers: {
                     'Content-Type': 'application/json',
                 },
-            });
+            }); */
             // create order in DB
             const data = await request(
                 process.env.API_ENDPOINT,
