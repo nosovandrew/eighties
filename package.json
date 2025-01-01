@@ -11,7 +11,7 @@
     "go": "next build && next start",
     "lint": "next lint"
   },
-  "author": "Webnos Studio",
+  "author": "Andrew Nosov tg@andrewnosov",
   "dependencies": {
     "apollo-server-micro": "^3.5.0",
     "graphql": "^16.0.1",
