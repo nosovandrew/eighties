@@ -1,0 +1,99 @@
+[
+    {
+        "_id": "63f9cda3bfa50e0034000001",
+        "item": "Сумка ЧАЙ",
+        "price": {
+            "base": 9999,
+            "currency": "RUB"
+        },
+        "drop": 1,
+        "features": [
+            "Канвас",
+            "Карман внутри",
+            "Молния металл",
+            "Влезет все"
+        ],
+        "skus": [
+            {
+                "_id": "63f9cda3bfa50e0034000002",
+                "sku": "GB001ONESIZECHAI",
+                "qtyInStock": 0,
+                "options": {
+                    "size": "ONESIZE"
+                }
+            }
+        ],
+        "slug": "bag-brown-marble-canvas",
+        "images": [
+            {
+                "_id": "63f9cda3bfa50e0034000005",
+                "alt": "Спортивная сумка \"Чай\" из мраморно-коричневого канваса высокой плотности",
+                "url": "/assets/brown_raw.png"
+            }
+        ]
+    },
+    {
+        "_id": "63f9cda3bfa50e0034000007",
+        "item": "Сумка ЩЕБЕНЬ",
+        "price": {
+            "base": 9999,
+            "currency": "RUB"
+        },
+        "drop": 1,
+        "features": [
+            "Канвас",
+            "Карман внутри",
+            "Молния металл",
+            "Влезет все"
+        ],
+        "skus": [
+            {
+                "sku": "GB001ONESIZECHAI",
+                "qtyInStock": 0,
+                "options": {
+                    "size": "ONESIZE"
+                }
+            }
+        ],
+        "slug": "bag-gray-marble-canvas",
+        "images": [
+            {
+                "_id": "63f9cda3bfa50e0034000011",
+                "alt": "Спортивная сумка \"Щебень\" из мраморно-серого канваса высокой плотности",
+                "url": "/assets/gray_raw.pn"
+            }
+        ]
+    },
+    {
+        "_id": "63f9cda3bfa50e0034000013",
+        "item": "Сумка БАНАН",
+        "price": {
+            "base": 9999,
+            "currency": "RUB"
+        },
+        "drop": 1,
+        "features": [
+            "Канвас",
+            "Карман внутри",
+            "Молния металл",
+            "Влезет все"
+        ],
+        "skus": [
+            {
+                "sku": "GB001ONESIZEBANANA",
+                "qtyInStock": 0,
+                "options": {
+                    "size": "ONESIZE"
+                }
+            }
+        ],
+        "slug": "bag-sand-marble-canvas",
+        "images": [
+            {
+                "_id": "63f9cda3bfa50e0034000017",
+                "alt": "Спортивная сумка \"Банан\" из мраморно-песочного канваса высокой плотности",
+                "url": "/assets/sand_raw.png"
+            }
+        ]
+    }
+]
