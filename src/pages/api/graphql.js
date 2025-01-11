@@ -15,7 +15,7 @@ export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Credentials', 'true');
     res.setHeader(
         'Access-Control-Allow-Origin',
-        'https://eighties-qx7rtxphv-andrew-nosovs-projects.vercel.app/, https://eighties.vercel.app/'
+        'https://eighties.vercel.app/'
     );
     res.setHeader(
         'Access-Control-Allow-Headers',
