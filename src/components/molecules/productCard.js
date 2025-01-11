@@ -39,8 +39,8 @@ export default function ProductCard({ product }) {
                 <CardContainer>
                     <ImageContainer>
                         <ImageRenderer
-                            alt={images[1].alt}
-                            src={images[1].url}
+                            alt={images[0].alt}
+                            src={images[0].url}
                             layout='intrinsic'
                             width={1080}
                             height={1080}

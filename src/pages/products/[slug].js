@@ -82,7 +82,7 @@ export default function Product({ product }) {
         item,
         price: price.base, // add only price value
         sku: skus[0].sku,
-        image: images[1], // 1st image obg: alt, url (will remove when order throwed)
+        image: images[0], // 1st image obg: alt, url (will remove when order throwed)
     };
 
     // hadle addToCart button click
@@ -102,8 +102,8 @@ export default function Product({ product }) {
             <ProductContainer>
                 <ImageContainer>
                     <ImageRenderer
-                        alt={images[1].alt}
-                        src={images[1].url}
+                        alt={images[0].alt}
+                        src={images[0].url}
                         layout='intrinsic'
                         width={1080}
                         height={1080}
