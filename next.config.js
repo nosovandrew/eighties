@@ -19,6 +19,7 @@ module.exports = withPlugins(
             MONGODB_URI: process.env.MONGODB_URI,
             API_ENDPOINT: process.env.API_ENDPOINT,
             CRM_BOT: process.env.CRM_BOT,
+            CRM_BOT_KEY: process.env.CRM_BOT_KEY,
             VERCEL_ENV: process.env.VERCEL_ENV,
             HOST: process.env.HOST,
         },
