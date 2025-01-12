@@ -171,7 +171,15 @@ export async function getStaticProps({ params }) {
             notFound: true,
         };
     }
-    product._id = await product._id.toString(); // ObjectId to String
+
+    // ObjectId to String
+    product._id = product._id.toString();
+    product.skus.forEach(item => {
+        item._id = item._id.toString();
+    });
+    product.images.forEach(item => {
+        item._id = item._id.toString();
+    })
 
     // revalidate set the time (in sec) of re-generate page (it imitate SSR)
     return { props: { product }, revalidate: 300 };

@@ -26,7 +26,7 @@ export default function Shop({ products, slug }) {
         <Layout>
             <NextSeo
                 title={`Выпуск ${slug}`}
-                description= {`Список вещей, которые достпны для заказа в выпуске (дропе) #${slug}.`}
+                description={`Список вещей, которые достпны для заказа в выпуске (дропе) #${slug}.`}
             />
             <CardsContainer>
                 {products.map((_product) => (
@@ -75,6 +75,13 @@ export async function getStaticProps({ params }) {
     // convert ObjectId to String for each product
     const products = productsData.map((_product) => {
         _product._id = _product._id.toString();
+        _product.skus.forEach(item => {
+            item._id = item._id.toString();
+        });
+        _product.images.forEach(item => {
+            item._id = item._id.toString();
+        })
+
         return _product;
     });
 
