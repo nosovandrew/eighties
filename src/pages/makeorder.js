@@ -147,6 +147,7 @@ export default function Preorder() {
                 body: JSON.stringify(variables.input),
                 headers: {
                     'Content-Type': 'application/json',
+                    'X-Api-Key': process.env.CRM_BOT_KEY,
                 },
             });
             // create order in DB
